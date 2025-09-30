@@ -70,6 +70,16 @@
 		</dependency>
 
 
+
+    <dependency>
+        <groupId>com.github.javafaker</groupId>
+        <artifactId>javafaker</artifactId>
+        <version>1.0.2</version>
+    </dependency>
+
+
+
+
 		<!--
 		https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-support -->
 		<dependency>

@@ -9,9 +9,9 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
-
+import com.github.javafaker.Faker;
 import basetest.BaseTest;
-
+@Test
 public class TestingOfFeedbackPage extends BaseTest {
 
 	public TestingOfFeedbackPage() {
@@ -22,13 +22,13 @@ public class TestingOfFeedbackPage extends BaseTest {
 
 		Goto();
 		loginApplication();
-
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-
+		
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40));
+		avoidFeedbackpopup();
 		WebElement element = wait.until(
 				ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Feedbacks']")));
 		element.click();
-
+		avoidFeedbackpopup();
 		// templates
 		WebElement element2 = wait.until(ExpectedConditions
 				.visibilityOfElementLocated(By.cssSelector("a[data-testid='feedback-templates-btn']")));
@@ -38,11 +38,14 @@ public class TestingOfFeedbackPage extends BaseTest {
 		WebElement element3 = wait.until(
 				ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[data-testid='create-template']")));
 		element3.click();
+		   Faker faker = new Faker();
 
+	        // Generate random name
+	        String name = faker.name().fullName();
 		// add title
 
 		WebElement element4 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("template_name")));
-		element4.sendKeys("TEST");
+		element4.sendKeys(name);
 		// add description
 		driver.findElement(By.id("template_description")).sendKeys("test the feebacksection");
 
@@ -75,11 +78,12 @@ public class TestingOfFeedbackPage extends BaseTest {
 		Goto();
 		loginApplication();
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40));
+		avoidFeedbackpopup();
 		WebElement element = wait.until(
 				ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Feedbacks']")));
 		element.click();
-
+		avoidFeedbackpopup();
 		WebElement element1 = wait.until(ExpectedConditions
 				.visibilityOfElementLocated(By.cssSelector("a[data-testid='feedback-templates-btn']")));
 		element1.click();
@@ -135,11 +139,12 @@ public class TestingOfFeedbackPage extends BaseTest {
 		Goto();
 		loginApplication();
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40));
+		avoidFeedbackpopup();
 		WebElement element = wait.until(
 				ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Feedbacks']")));
 		element.click();
-
+		avoidFeedbackpopup();
 		WebElement element1 = wait.until(ExpectedConditions
 				.visibilityOfElementLocated(By.cssSelector("a[data-testid='feedback-templates-btn']")));
 		element1.click();
@@ -200,11 +205,12 @@ public class TestingOfFeedbackPage extends BaseTest {
 		Goto();
 		loginApplication();
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40));
+		avoidFeedbackpopup();
 		WebElement element = wait.until(
 				ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Feedbacks']")));
 		element.click();
-
+		avoidFeedbackpopup();
 		WebElement element1 = wait.until(ExpectedConditions
 				.visibilityOfElementLocated(By.cssSelector("a[data-testid='feedback-templates-btn']")));
 		element1.click();
@@ -270,10 +276,12 @@ public class TestingOfFeedbackPage extends BaseTest {
 		Goto();
 		loginApplication();
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40));
+		avoidFeedbackpopup();
 		WebElement element = wait.until(
 				ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Feedbacks']")));
 		element.click();
+		avoidFeedbackpopup();
 		WebElement element1 = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='Received']")));
 		element1.click();
@@ -285,10 +293,12 @@ public class TestingOfFeedbackPage extends BaseTest {
 		Goto();
 		loginApplication();
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40));
+		avoidFeedbackpopup();
 		WebElement element = wait.until(
 				ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Feedbacks']")));
 		element.click();
+		avoidFeedbackpopup();
 		WebElement element1 = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='Received']")));
 		element1.click();
@@ -306,11 +316,12 @@ public class TestingOfFeedbackPage extends BaseTest {
 		Goto();
 		loginApplication();
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40));
+		avoidFeedbackpopup();
 		WebElement element = wait.until(
 				ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Feedbacks']")));
 		element.click();
-
+		avoidFeedbackpopup();
 		WebElement element1 = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='Received']")));
 		element1.click();
@@ -328,11 +339,12 @@ public class TestingOfFeedbackPage extends BaseTest {
 
 		Goto();
 		loginApplication();
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40));
+		avoidFeedbackpopup();
 		WebElement feedbackButton = wait.until(
 				ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Feedbacks']")));
 		feedbackButton.click();
-
+		avoidFeedbackpopup();
 		WebElement feedbackTemplate = wait.until(ExpectedConditions
 				.visibilityOfElementLocated(By.cssSelector("a[data-testid='feedback-templates-btn']")));
 		feedbackTemplate.click();
