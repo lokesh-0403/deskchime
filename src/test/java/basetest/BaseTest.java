@@ -27,6 +27,9 @@ import utility.ConfigReader;
 
 public class BaseTest {
 
+	public string email = "yesh@zasyasolutions.com";
+	public string password = "Yesh255198@";
+	
 	public WebDriver driver;
 	ConfigReader config = new ConfigReader(); // Instance of ConfigReader
 
@@ -71,12 +74,12 @@ public class BaseTest {
 		WebElement email = wait.until(
 				ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[placeholder='Email address']")));
 
-		email.sendKeys("yesh@zasyasolutions.com");
+		email.sendKeys(email);
 
 		WebElement password = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[placeholder='Password']")));
 
-		password.sendKeys("Yesh255198@");
+		password.sendKeys(password);
 		WebElement submitbutton = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[type='submit']")));
 
