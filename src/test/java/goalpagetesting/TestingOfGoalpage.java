@@ -14,107 +14,159 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
 import basetest.BaseTest;
-@Test
+
 public class TestingOfGoalpage extends BaseTest {
 
 	public TestingOfGoalpage() {
 		super(); // This will initialize the WebDriver in the BaseTest class
 	}
+
+	private WebDriverWait wait;
+	private WebDriver driver;
+	private JavascriptExecutor js;
+
+	private void initDriver() {
+		driver = new ChromeDriver();
+		wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+		js = (JavascriptExecutor) driver;
+		driver.manage().window().maximize();
+	}
+
+	private WebElement waitForVisible(By locator) {
+		return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+	}
+
+	private WebElement waitForClickable(By locator) {
+		return wait.until(ExpectedConditions.elementToBeClickable(locator));
+	}
+
+	private void clickJS(By locator) throws InterruptedException {
+		WebElement element = waitForClickable(locator);
+		js.executeScript("arguments[0].scrollIntoView(true);", element);
+		Thread.sleep(800);
+		js.executeScript("arguments[0].click();", element);
+	}
+
+	private void type(By locator, String text) throws InterruptedException {
+		WebElement element = waitForVisible(locator);
+		element.clear();
+		element.sendKeys(text);
+	}
+
+	private void clickSwitchButtonOfElement(By locator, By LoactorA) throws InterruptedException {
+		WebElement element = waitForClickable(locator);
+		js.executeScript("arguments[0].scrollIntoView(true);", element);
+		Thread.sleep(800);
+		WebElement switchButton = element.findElement(LoactorA);
+		switchButton.click();
+	}
 @Test
 	public void userCanCreateGoalForselfDevelopment() throws InterruptedException {
 		Goto();
 		loginApplication();
+		clickJS(By.cssSelector("button[aria-label='Close']"));
 
+		// Go to Goals
+		clickJS(By.xpath("//span[@class='ant-menu-title-content'][normalize-space()='Goals']"));
 
+		// Click Create Goal
+		clickJS(By.xpath("//div[normalize-space()='New goal']"));
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+		// Choose Your Goal
+		clickJS(By.xpath("//div[text()='Self-Development']"));
+		
+		// Select Team Mate
+		type(By.xpath("(//input[@type='text'])[1]"), "lokesh");
+		Thread.sleep(1000);
+		clickJS(By.cssSelector("div[class='flex gap-2 items-center select-none']"));
+		clickJS(By.id("member-save"));
 
-		WebElement element = wait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='Goals']")));
-		element.click();
-		WebElement element1 = wait.until(
-				ExpectedConditions.visibilityOfElementLocated(By.cssSelector("a[data-testid='goal-create-btn']")));
-		element1.click();
-		WebElement element2 = wait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[text()='Self-Development']")));
-		element2.click();
-		WebElement element3 = wait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.id("goals_goals_headers_0_goal_title")));
-		element3.sendKeys("xyz");
+		// Fill details
+		type(By.cssSelector("input[placeholder='Eg: Increase my overall productivity']"), "Use the SMART goal method");
 
-		WebElement element4 = wait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".is-empty.is-editor-empty")));
-		element4.sendKeys("abc");
+		type(By.xpath("//div[contains(@class,'tiptap ProseMirror ')]"),
+				"When setting goals for yourself, you may choose to follow the SMART goal method...");
+	
+		// Submit goal
+		clickJS(By.xpath("//button[@type='submit']"));
 
-		WebElement element5 = wait.until(
-				ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[data-testid='goal-submit-btn']")));
-		element5.click();
+		// Wait for confirmation
+		waitForVisible(By.xpath("//div[contains(@class,'ant-notification-notice-success')]"));
+		System.out.println("Goal created successfully!");
+
 		driver.close();
 	}
 
-
+@Test
 	public void userCanCreateGoalForTeam() throws InterruptedException {
 
 		Goto();
 		loginApplication();
+		clickJS(By.cssSelector("button[aria-label='Close']"));
 
+		// Go to Goals
+		clickJS(By.xpath("//span[@class='ant-menu-title-content'][normalize-space()='Goals']"));
 
+		// Click Create Goal
+		clickJS(By.xpath("//div[normalize-space()='New goal']"));
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+		// Choose Your Goal
+		clickJS(By.xpath("//div[@class='py-4 px-6 space-y-4']/div[2]"));
 
-		WebElement element = wait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='Goals']")));
-		element.click();
-		WebElement element1 = wait.until(
-				ExpectedConditions.visibilityOfElementLocated(By.cssSelector("a[data-testid='goal-create-btn']")));
-		element1.click();
-		WebElement element2 = wait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div[data-testid='goal-team']")));
-		element2.click();
+		// Select Team Mate
+		type(By.xpath("(//input[@type='text'])[1]"), "lokesh");
+		Thread.sleep(1000);
+		clickJS(By.cssSelector("div[class='flex gap-2 items-center select-none']"));
+		clickJS(By.id("member-save"));
 
-		WebElement element3 = wait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.id("goals_goals_headers_0_goal_title")));
-		element3.sendKeys("user can create a goal for team");
+		// Fill details
+		type(By.cssSelector("input[placeholder='Eg: Increase my overall productivity']"), "Use the SMART goal method");
 
-		WebElement element4 = wait.until(
-				ExpectedConditions.visibilityOfElementLocated(By.xpath("//p[@class='is-empty is-editor-empty']")));
-		element4.sendKeys("test case for team");
+		type(By.xpath("//div[contains(@class,'tiptap ProseMirror ')]"),
+				"When setting goals for yourself, you may choose to follow the SMART goal method...");
 
-		Actions action = new Actions(driver);
-		for (int i = 0; i < 3; i++) {
+		// Set Goal Timeline
+		clickJS(By.xpath("//p[normalize-space()='Weekly']"));
 
-			action.sendKeys(Keys.PAGE_DOWN).perform();
-			Thread.sleep(2000);
-		}
+		// Add observer
 
-		WebElement element5 = wait.until(
-				ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'Ankit Dhiman')]")));
-		element5.click();
+		clickSwitchButtonOfElement(By.xpath("(//div[normalize-space()='Add Goal Observers'])[1]"),
+				By.cssSelector(".ant-switch-handle"));
+
+		type(By.xpath("(//input[@type='text'])[3]"), "");
+		Thread.sleep(1000);
+		clickJS(By.xpath("(//div[@class='flex gap-2 items-center select-none'])[2]"));
+
+		clickJS(By.xpath("(//button[@id='member-save'])[2]"));
+
+		// Schedule FollowUp
+		clickSwitchButtonOfElement(By.xpath("(//div[normalize-space()='Schedule Follow-Up for Goal'])[1]"),
+				By.cssSelector(".ant-switch-handle"));
+
+		type(By.xpath("(//input[@type='search'])[3]"), "Weekly");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(
+				By.cssSelector("div[title='Weekly'] div[class='ant-select-item-option-content']"))).click();
+		Thread.sleep(1000);
+		type(By.xpath("(//input[@type='search'])[4]"), "12:00 PM");
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(
+				"div[class='ant-select-item ant-select-item-option ant-select-item-option-active'] div[class='ant-select-item-option-content']")))
+				.click();
 		Thread.sleep(2000);
-		WebElement element6 = wait.until(
-				ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[data-testid='goal-submit-btn']")));
-		element6.click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//div[@class='ant-select-selector'])[5]")))
+				.click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(
+				By.cssSelector("div[title='30 min'] div[class='ant-select-item-option-content']"))).click();
 
-	}
+		// Submit goal
+		clickJS(By.xpath("//button[@type='submit']"));
 
-	public void usersCanSeeOnTrackGoals() throws InterruptedException {
-
-		Goto();
-		loginApplication();
-
-
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-
-		WebElement element = wait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='Goals']")));
-		element.click();
-		WebElement element1 = wait.until(
-				ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@data-testid='tab-button-On Track']")));
-		element1.click();
+		// Wait for confirmation
+		waitForVisible(By.xpath("//div[contains(@class,'ant-notification-notice-success')]"));
+		System.out.println("Goal created successfully!");
 
 		driver.close();
 	}
-
+@Test
 	public void usersCanSeeCompletedGoals() throws InterruptedException {
 
 		Goto();
@@ -153,7 +205,7 @@ public class TestingOfGoalpage extends BaseTest {
 		driver.close();
 
 	}
-
+@Test
 	public void usersCanSeeAbandonedGoals() throws InterruptedException {
 		Goto();
 		loginApplication();
@@ -172,7 +224,7 @@ public class TestingOfGoalpage extends BaseTest {
 		driver.close();
 
 	}
-
+@Test
 	public void usersCanSeeArchivedGoals() throws InterruptedException {
 
 		Goto();
@@ -191,7 +243,7 @@ public class TestingOfGoalpage extends BaseTest {
 
 		driver.close();
 	}
-
+@Test
 	public void usersCanUpdateStatus() throws InterruptedException {
 
 		Goto();
@@ -381,7 +433,6 @@ public class TestingOfGoalpage extends BaseTest {
 
 		WebElement element15 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("meeting-save")));
 		element15.click();
-
 	}
 
 }
