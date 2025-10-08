@@ -16,6 +16,15 @@ public class Testingofloginpage extends BaseTest {
 	public Testingofloginpage() {
 		super(); // This will initialize the WebDriver in the BaseTest class
 	}
+	@FindBy(css = "input[placeholder='Email address']")
+	WebElement useremail;
+
+	@FindBy(css = "input[placeholder='Password']")
+	WebElement passwordEle;
+
+	@FindBy(css = "button[type='submit']")
+	WebElement submit;
+	
 //	@Test(dataProvider = "getData")
 //	public void validcredendetials(HashMap<String, String> input) throws InterruptedException {
 //		WebDriver driver = new ChromeDriver(ChromeOptionsConfig.getChromeOptions());
@@ -47,24 +56,28 @@ public class Testingofloginpage extends BaseTest {
 //
 //	}
 
+	public void login(){
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
+		driver.manage().window().maximize();
+		Goto();
+		WebElement login = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@href='/auth/login']")));
+		login.click();
+	}
+		
 	public void validcredendetials() throws InterruptedException {
 
 		Goto();
 		loginApplication();
-
-
-
-
-
 	}
 
 	public void invalidcredentials1() throws InterruptedException {
-		Goto();
-		loginApplication();
-
-
+		login();
+		PageFactory.initElements(driver, this);
+		useremail.sendKeys("yesh@zasyasolution.com");
+		passwordEle.sendKeys("Yesh255198@");
+		submit.click();
+		
 		WebElement w1 = driver.findElement(By.cssSelector(".ant-notification-notice-message"));
-
 		if (w1.isDisplayed()) {
 			String dialogText = w1.getText();
 			System.out.println("Popup message: " + dialogText);
@@ -74,61 +87,43 @@ public class Testingofloginpage extends BaseTest {
 	}
 
 	public void invalidcredentials2() throws InterruptedException {
-
-		Goto();
-		loginApplication();
-
-
-
+		login();
+		PageFactory.initElements(driver, this);
+		useremail.sendKeys("yesh@zasyasolutions.com");
+		passwordEle.sendKeys("Yesh2551981@");
+		submit.click();
 		WebElement w1 = driver.findElement(By.cssSelector(".ant-notification-notice-message"));
 
 		if (w1.isDisplayed()) {
 			String dialogText = w1.getText();
 			System.out.println("Popup message: " + dialogText);
-
 		}
-
 	}
 
 	public void emptyusernamefield() throws InterruptedException {
-		Goto();
-		loginApplication();
+	login();
+		PageFactory.initElements(driver, this);
+		passwordEle.sendKeys("Yesh2551981@");
+		submit.click();
+		WebElement w1 = driver.findElement(By.cssSelector(".ant-notification-notice-message"));
 
-
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
-
-		WebElement email = wait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[placeholder='Email address']")));
-
-		email.sendKeys("yesh@zasyasolutions.com");
-		WebElement submitbutton = wait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[type='submit']")));
-
-		submitbutton.click();
-
-
-
-		System.out.println("popup message"
-				+ driver.findElement(By.xpath("//div[@class='ant-form-item-explain-error']")).getText());
-
+		if (w1.isDisplayed()) {
+			String dialogText = w1.getText();
+			System.out.println("Popup message: " + dialogText);
+		}
 	}
 
 	public void emptypasswordfield() throws InterruptedException {
+	login();
+		PageFactory.initElements(driver, this);
+		useremail.sendKeys("yesh@zasyasolutions.com");		
+		submit.click();
+		WebElement w1 = driver.findElement(By.cssSelector(".ant-notification-notice-message"));
 
-
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
-		WebElement email = wait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[placeholder='Email address']")));
-
-		email.sendKeys("yesh@zasyasolutions.com");
-		WebElement submitbutton = wait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[type='submit']")));
-
-		submitbutton.click();
-
-
-		System.out.println(driver.findElement(By.xpath("//div[@class='ant-form-item-explain-error']")).getText());
-
+		if (w1.isDisplayed()) {
+			String dialogText = w1.getText();
+			System.out.println("Popup message: " + dialogText);
+		}
 	}
 
 	public void passwordresetlink() throws InterruptedException {
