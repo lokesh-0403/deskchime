@@ -30,46 +30,45 @@ public class Applaud extends BaseTest {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
 		avoidFeedbackpopup();
 
-		WebElement applaudButton = wait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Applaud']")));
+		 WebElement applaudTab = wait.until(
+                    ExpectedConditions.elementToBeClickable(By.xpath("//span[normalize-space()='Applaud']")));
+            applaudTab.click();
+            			
+            // Wait and click on Create button
+            WebElement createButton = wait.until(
+                    ExpectedConditions.elementToBeClickable(By.xpath("//button[@data-testid='applaud-create-button']")));
+            createButton.click();
 
-		applaudButton.click();
-		avoidFeedbackpopup();
-
-		WebElement createApplaud = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(
-				"//button[@class='rounded-lg w-fit tracking-[0.5px] font-medium flex items-center gap-2 justify-center transition-all duration-200 ease-in-out disabled:cursor-default bg-teal-500 text-white hover:bg-teal-400 active:bg-teal-300 disabled:bg-zinc-400 h-10 px-3 py-2 text-sm relative']")));
-		createApplaud.click();
-
-		WebElement memberNameList = wait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='user_id']")));
-		memberNameList.click();
-
-		WebElement enterMemberName = wait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.id("user_id")));
-	    enterMemberName.sendKeys("Ankit");
-		
-		
-		WebElement memberName = wait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@title='Ankit Sharma']")));
-		memberName.click();
-
-		WebElement categoriesField = wait.until(ExpectedConditions
-				.visibilityOfElementLocated(By.xpath("//div[@class='ant-select-selection-overflow']")));
-		categoriesField.click();
-
-		WebElement summarizer = wait.until(ExpectedConditions.visibilityOfElementLocated(
+            // Wait and select member
+            WebElement memberInput = wait.until(ExpectedConditions.elementToBeClickable(By.id("user_id")));
+            memberInput.click();
+            memberInput.sendKeys("Lokesh Sharma");
+            WebElement memberOption = wait.until(
+            	    ExpectedConditions.elementToBeClickable(By.xpath("//div[normalize-space()='Lokesh Sharma']")));
+            	memberOption.click();
+        
+            // Wait and select category from dropdown
+            WebElement dropdownElement = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@data-testid='select-category']")));
+            dropdownElement.click();
+            Thread.sleep(2000);
+           	WebElement categoryName = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[normalize-space()='Initiator']")));
+            categoryName.click();
+            dropdownElement.click();
+            
+			WebElement summarizer = wait.until(ExpectedConditions.visibilityOfElementLocated(
 				By.xpath("//span[@title='The one who links, restates, concludes, and summarizes.']")));
-		summarizer.click();
-		categoriesField.click();
+			summarizer.click();
+			categoriesField.click();
 
-		WebElement comment = wait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//textarea[@id='comment']")));
-		comment.sendKeys("ok");
+		
+            // Wait and enter comment
+            WebElement commentBox = wait.until(ExpectedConditions.elementToBeClickable(By.id("comment")));
+            commentBox.sendKeys("xyz");
 
-		WebElement submitButton = wait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@type='submit']")));
-		submitButton.click();
-
+            // Wait and click submit button
+            WebElement submitButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button[type='submit']")));
+            submitButton.click();
+	
 	}
 
 	public void useMonthFilter() throws InterruptedException {
@@ -86,23 +85,28 @@ public class Applaud extends BaseTest {
 		applaudbutton.click();
 
 		avoidFeedbackpopup();
-		WebElement selectMonth = wait.until(
-				ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[placeholder='Select month']")));
-		selectMonth.click();
-		WebElement april = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[text()='Feb']")));
-		april.click();
-		Thread.sleep(3000);
-		
-
+		 	WebElement selectMonth = wait.until(
+    				ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[placeholder='Select month']")));
+    		selectMonth.click();
+    		List<WebElement> currentMonth = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector("div[class='ant-picker-cell-inner']")));
+    		  Random random = new Random();
+  	        WebElement month = currentMonth.get(random.nextInt(currentMonth.size()));
+    		month.click();
+    		String monthName = month.getText();
+    		List<WebElement> dateFeilds = wait.until(
+    				ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector("//div[contains(text(),',')]")));
+    		for(WebElement dateField : dateFeilds ) {
+    		String dateText = dateField.getText();
+    		Assert.assertTrue(dateText.contains(monthName));
+    		Thread.sleep(3000);
+        }
 	}
 
 	public void seeReceivedApplauds() throws InterruptedException {
 
 		Goto();
 
-		loginApplication();
-
-	
+		loginApplication();	
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40));
 
 		avoidFeedbackpopup();
