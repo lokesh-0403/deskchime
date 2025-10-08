@@ -17,259 +17,470 @@ public class TestingOfFeedbackPage extends BaseTest {
 	public TestingOfFeedbackPage() {
 		super(); // This will initialize the WebDriver in the BaseTest class
 	}
-@Test
-	public void templateCreation() throws InterruptedException {
+  // Reusable method to login and close popup
+    private void closePopup() throws InterruptedException {
+      
+        try {
+            WebElement feedbackPopup = wait.until(
+                ExpectedConditions.elementToBeClickable(By.cssSelector("button[aria-label='Close']")));
+            feedbackPopup.click();
+        } catch (Exception e) {
+            System.out.println("No popup found or already closed");
+        }
+        Thread.sleep(5000);   
+        try {
+            WebElement skipPopup = wait.until(
+                ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[normalize-space()='Skip']")));
+            skipPopup.click();
+        } catch (Exception e) {
+            System.out.println("No popup found or already closed");
+        }
+      
+    }
+    
+    // Reusable method to click Feedbacks menu
+    
+    private void clickFeedbacksMenu() {
+        WebElement feedbacksMenu = wait.until(
+            ExpectedConditions.elementToBeClickable(By.xpath("//span[normalize-space()='Feedbacks']")));
+        feedbacksMenu.click();
+    }
+    
+    // Reusable method to click Templates button
+    private void clickTemplatesButton() {
+        WebElement templatesBtn = wait.until(
+            ExpectedConditions.elementToBeClickable(
+                By.xpath("//div[normalize-space()='Templates']")));
+        templatesBtn.click();
+    }
+    private void clickRequestFeedbackButton() {
+        WebElement reqFeedbackBtn = wait.until(
+            ExpectedConditions.elementToBeClickable(
+                By.xpath("//div[normalize-space()='Request a Feedback']")));
+        reqFeedbackBtn.click();
+    }
+    
+    // Reusable method to click action menu on template row
+    private void clickTemplateActionMenu() {
+        WebElement actionMenu = wait.until(
+            ExpectedConditions.elementToBeClickable(By.xpath(
+                "/html/body/div[1]/div/div/main/div/div[3]/div/div/div/div/div/div/div[2]/table/tbody/tr[2]/td[4]/div/button")));
+        actionMenu.click();
+    }
+    
+    // Reusable method to scroll and click element
+    private void scrollAndClick(WebElement element) {
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element).perform();
+        wait.until(ExpectedConditions.elementToBeClickable(element));
+        element.click();
+    }
 
-		Goto();
+ 
+    public void templateCreation() throws InterruptedException {
+      	goto();
 		loginApplication();
-		
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40));
-		avoidFeedbackpopup();
-		WebElement element = wait.until(
-				ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Feedbacks']")));
-		element.click();
-		avoidFeedbackpopup();
-		// templates
-		WebElement element2 = wait.until(ExpectedConditions
-				.visibilityOfElementLocated(By.cssSelector("a[data-testid='feedback-templates-btn']")));
-		element2.click();
+		closePopup()
+        clickFeedbacksMenu();
+        clickTemplatesButton();
+        Thread.sleep(1000);
+        // Click "Create from scratch" button
+        WebElement createFromScratch = wait.until(
+            ExpectedConditions.visibilityOfElementLocated(By.xpath(
+                "(//div[normalize-space()='Create From Scratch'])[2]")));
+        createFromScratch.click();
+        Thread.sleep(1000);
 
-		// create from scratch
-		WebElement element3 = wait.until(
-				ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[data-testid='create-template']")));
-		element3.click();
-		   Faker faker = new Faker();
+        // Add title
+        WebElement titleInput = wait.until(
+            ExpectedConditions.visibilityOfElementLocated(By.id("template_name")));
+        titleInput.clear();
+        titleInput.sendKeys("TEST");
 
-	        // Generate random name
-	        String name = faker.name().fullName();
-		// add title
+        // Add description
+        WebElement descriptionInput = wait.until(
+            ExpectedConditions.visibilityOfElementLocated(By.id("template_description")));
+        descriptionInput.clear();
+        descriptionInput.sendKeys("test the feedback section");
 
-		WebElement element4 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("template_name")));
-		element4.sendKeys(name);
-		// add description
-		driver.findElement(By.id("template_description")).sendKeys("test the feebacksection");
+        // Click next/continue button
+        WebElement continueBtn = wait.until(
+            ExpectedConditions.visibilityOfElementLocated(By.xpath(
+                "(//button[contains(@class,'rounded-lg')])[3]")));
+        
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block: 'center'});", continueBtn);
 
-		// click
+        Thread.sleep(500);
+        
+        continueBtn.click();
+        
+//    continueBtn.click();
 
-		driver.findElement(By.cssSelector(
-				"button[class='rounded-lg w-fit tracking-[0.5px] font-medium flex items-center gap-2 justify-center transition-all duration-200 ease-in-out disabled:cursor-default bg-teal-500 text-white hover:bg-teal-400 active:bg-teal-300 disabled:bg-zinc-400 h-10 px-3 py-2 text-sm relative']"))
-				.click();
-		// click on multiple choice
-		driver.findElement(By.cssSelector(
-				"span[class='ant-select-selection-item'] div[class='font-normal text-xs lg:text-sm leading-140 lg:leading-140 text-slate-600']"))
-				.click();
+        // Click on multiple choice selector
+        WebElement multipleChoice = wait.until(
+            ExpectedConditions.elementToBeClickable(By.cssSelector(
+                "span[class='ant-select-selection-item'] div[class='font-normal text-xs lg:text-sm leading-140 lg:leading-140 text-slate-600']")));
+        multipleChoice.click();
 
-		driver.findElement(By.cssSelector("input[placeholder='E.g. What would you like to ask from a person.']"))
-				.sendKeys("anything");
+        // Enter question
+        WebElement questionInput = wait.until(
+            ExpectedConditions.elementToBeClickable(
+                By.cssSelector("input[placeholder='E.g. What would you like to ask from a person.']")));
+        questionInput.clear();
+        questionInput.sendKeys("anything");
 
-		driver.findElement(By.xpath("//input[@placeholder='E.g. Option 1']")).sendKeys("true");
-		driver.findElement(By.xpath("//input[@placeholder='E.g. Option 2']")).sendKeys("false");
-		driver.findElement(By.cssSelector(
-				"button[class='rounded-lg w-fit tracking-[0.5px] font-medium flex items-center gap-2 justify-center transition-all duration-200 ease-in-out disabled:cursor-default bg-teal-500 text-white hover:bg-teal-400 active:bg-teal-300 disabled:bg-zinc-400 h-10 px-3 py-2 text-sm relative'] div[class='flex items-center gap-2 justify-center']"))
-				.click();
-		WebElement element5 = wait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[normalize-space()='Submit']")));
-		element5.click();
+        // Enter option 1
+        WebElement option1 = wait.until(
+            ExpectedConditions.elementToBeClickable(By.xpath("//input[@placeholder='E.g. Option 1']")));
+        option1.clear();
+        option1.sendKeys("true");
 
-	}
+        // Enter option 2
+        WebElement option2 = wait.until(
+            ExpectedConditions.elementToBeClickable(By.xpath("//input[@placeholder='E.g. Option 2']")));
+        option2.clear();
+        option2.sendKeys("false");
 
-	public void userCanMaKEUseOfPreMadeFeedbackTemplate() throws InterruptedException {
+        // Click add question button
+        WebElement addQuestionBtn = wait.until(
+            ExpectedConditions.elementToBeClickable(By.cssSelector(
+                "button[class='rounded-lg w-fit tracking-[0.5px] font-medium flex items-center gap-2 justify-center transition-all duration-200 ease-in-out disabled:cursor-default bg-teal-500 text-white hover:bg-teal-400 active:bg-teal-300 disabled:bg-zinc-400 h-10 px-3 py-2 text-sm relative'] div[class='flex items-center gap-2 justify-center']")));
+        addQuestionBtn.click();
 
-		Goto();
+        // Click submit button
+        WebElement submitBtn = wait.until(
+            ExpectedConditions.elementToBeClickable(By.xpath("//div[normalize-space()='Submit']")));
+        submitBtn.click();
+        
+        WebElement goToTemplate = wait.until(
+                ExpectedConditions.elementToBeClickable(By.xpath("//div[normalize-space()='Go to templates']")));
+        goToTemplate.click();
+        
+        
+        Thread.sleep(2000); // Wait to see result
+        System.out.println("Template created successfully!");
+    }
+
+ public void saveAndEditTemplate() throws InterruptedException {
+    	Goto();
+		loginApplication();	
+		closePopup();  
+    	clickFeedbacksMenu();
+        clickTemplatesButton();
+        
+        Thread.sleep(1000); // Wait for templates to load
+        clickTemplateActionMenu();
+
+        // Click edit option
+        WebElement editLink = wait.until(
+            ExpectedConditions.elementToBeClickable(
+                By.cssSelector("li[data-testid='edit-template']")));
+        editLink.click();
+
+        // Edit description
+        WebElement descriptionInput = wait.until(
+            ExpectedConditions.elementToBeClickable(By.cssSelector("#template_description")));
+        descriptionInput.sendKeys(Keys.ENTER);
+        descriptionInput.sendKeys("Updates value");
+        
+        Thread.sleep(1000);
+
+        // Click save buttons (3 times as in original)
+       
+            WebElement nextBtn = wait.until(
+                ExpectedConditions.elementToBeClickable(By.xpath(
+                		   "(//button[contains(@class,'rounded-lg')])[3]")));
+            
+            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block: 'center'});", nextBtn);
+            Thread.sleep(500);
+            nextBtn.click();
+            Thread.sleep(500);
+  
+            WebElement nextBtn2 = wait.until(
+                    ExpectedConditions.elementToBeClickable(By.xpath(
+                    		   "//div[normalize-space()='Next']")));
+                
+                ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block: 'center'});", nextBtn2);
+                Thread.sleep(1000);
+                nextBtn2.click();
+                Thread.sleep(500);
+        
+        WebElement updateBtn = wait.until(
+                ExpectedConditions.elementToBeClickable(By.xpath(
+                		   "//div[normalize-space()='Update']")));
+        
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block: 'center'});", updateBtn);
+        
+        System.out.println("Template edited successfully!");
+    }
+
+//    @Test(dataProvider="getData")
+    public void userCanMakeUseOfPreMadeFeedbackTemplate() throws InterruptedException {
+       	Goto();
 		loginApplication();
+		closePopup();
+        clickFeedbacksMenu();
+        clickTemplatesButton();
+        
+        Thread.sleep(1000);
+        
+        // Click use template option
+        WebElement gotoDefaultTemplate = wait.until(
+            ExpectedConditions.elementToBeClickable(
+                By.xpath("//span[normalize-space()='Default Template']")));
+        gotoDefaultTemplate.click();
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40));
-		avoidFeedbackpopup();
-		WebElement element = wait.until(
-				ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Feedbacks']")));
-		element.click();
-		avoidFeedbackpopup();
-		WebElement element1 = wait.until(ExpectedConditions
-				.visibilityOfElementLocated(By.cssSelector("a[data-testid='feedback-templates-btn']")));
-		element1.click();
-		WebElement element11 = wait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='Default Template']")));
-		element11.click();
+        Thread.sleep(1000); // Wait for templates to load
+        clickTemplateActionMenu();
 
-		WebElement element12 = wait.until(ExpectedConditions
-				.visibilityOfElementLocated(By.cssSelector("div[class='flex flex-1 justify-center']")));
-		element12.click();
+        WebElement useTemplate = wait.until(
+                ExpectedConditions.elementToBeClickable(
+                    By.cssSelector("li[data-testid='use-template']")));
+        useTemplate.click();
+        Thread.sleep(1000);
+        
+        // Click through steps
+        
+            WebElement nextBtn = wait.until(
+                ExpectedConditions.elementToBeClickable(By.cssSelector(
+                		"button[data-testid='question-next-btn']")));
+                		
+            nextBtn.click();
+            Thread.sleep(500);
+        
 
-		WebElement element13 = wait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[text()='Use Template']")));
-		element13.click();
+        // Select team      
+        String teamMateName = "Yesh Sharma";
+        WebElement teamSelector = wait.until(
+                ExpectedConditions.elementToBeClickable(
+                    By.xpath("//span[normalize-space()='All Team Members']")));
+        teamSelector.click();
 
-		WebElement element2 = wait.until(ExpectedConditions
-				.visibilityOfElementLocated(By.xpath("//button[@data-testid='feedback-scratch-next-btn']")));
+        WebElement nameInput = wait.until(
+            ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[class='ant-input']")));
+        nameInput.sendKeys(teamMateName);
+        
+        WebElement teamOption = wait.until(
+                ExpectedConditions.elementToBeClickable(By.cssSelector("div[class='flex gap-2 items-center select-none']")));
+        teamOption.click();
+        
+        Thread.sleep(2000);
+        
+        WebElement nextBtn1 = wait.until(
+                ExpectedConditions.elementToBeClickable(By.xpath("//div[normalize-space()='Next']")));
+         nextBtn1.click();
+            Thread.sleep(500);
+        
+        // Scroll to and click final submit button
+        WebElement submitBtn = wait.until(
+            ExpectedConditions.presenceOfElementLocated(By.cssSelector(
+                "button[class='rounded-lg w-fit tracking-[0.5px] font-medium flex items-center gap-2 justify-center transition-all duration-200 ease-in-out disabled:cursor-default bg-teal-500 text-white hover:bg-teal-400 active:bg-teal-300 disabled:bg-zinc-400 h-10 px-3 py-2 text-sm relative'] div[class='flex items-center gap-2 justify-center']")));
+        scrollAndClick(submitBtn);
 
-		element2.click();
+        // Click final confirmation
+        WebElement confirmText = wait.until(
+            ExpectedConditions.elementToBeClickable(By.cssSelector(
+                "div[class='ant-notification-notice ant-notification-notice-success ant-notification-notice-closable']")));
+      String confText = confirmText.getText();
+        Assert.assertEquals(confText, "Feedback Assigned Successfully");
+        
+        if (confText.equals("Feedback Assigned Successfully")) {
+            System.out.println("Pre-made template used successfully!");
+        } else {
+            System.out.println("Expected message not found! Actual: " + confText);
+        }
+        }
 
-		Actions actions1 = new Actions(driver);
-		WebElement element21 = wait.until(
-				ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@data-testid='question-next-btn']")));
-
-		actions1.moveToElement(element21);
-		actions1.scrollToElement(element21);
-
-		actions1.perform();
-		element21.click();
-
-		WebElement element3 = wait.until(
-				ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div[data-testid='memberList-0']")));
-		element3.click();
-		Thread.sleep(2000);
-
-		WebElement element4 = wait.until(ExpectedConditions
-				.visibilityOfElementLocated(By.cssSelector("button[data-testid='feedback-permission-next-btn']")));
-		actions1.moveToElement(element4);
-		actions1.perform();
-		element4.click();
-
-		WebElement element5 = wait.until(ExpectedConditions
-				.visibilityOfElementLocated(By.cssSelector("button[data-testid='feedback-preview-submit-btn']")));
-
-		actions1.moveToElement(element5);
-		actions1.perform();
-		element5.click();
-
-	}
-
-	public void userCanAskForFeedbackFromSpecificTeamMember() throws InterruptedException {
-
-		Goto();
+//    @Test(dataProvider="getData")
+    public void userCanAskForFeedbackFromSpecificTeamMember() throws InterruptedException {
+      	Goto();
 		loginApplication();
+		closePopup();
+        clickFeedbacksMenu();
+        clickRequestFeedbackButton();
+        
+        Thread.sleep(1000);
+        
+        // Click use template option
+        WebElement fromTemplateCard = wait.until(
+            ExpectedConditions.elementToBeClickable(
+                By.xpath("//div[normalize-space()='From a Template']")));
+        fromTemplateCard.click();
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40));
-		avoidFeedbackpopup();
-		WebElement element = wait.until(
-				ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Feedbacks']")));
-		element.click();
-		avoidFeedbackpopup();
-		WebElement element1 = wait.until(ExpectedConditions
-				.visibilityOfElementLocated(By.cssSelector("a[data-testid='feedback-templates-btn']")));
-		element1.click();
+        WebElement searchTemplate = wait.until(
+                ExpectedConditions.elementToBeClickable(
+                    By.cssSelector("input[type='text']")));
+        searchTemplate.sendKeys("Template from scratch");
+        Thread.sleep(500);
+        WebElement searchedTemplate = wait.until(
+                ExpectedConditions.elementToBeClickable(
+                    By.cssSelector("div[data-testid='feedback-template-item-0']")));
+        searchedTemplate.click();
+        
+        Thread.sleep(1000); // Wait for templates to load
+      
+        // Click through first two steps     
+        WebElement nextBtn = wait.until(
+                ExpectedConditions.elementToBeClickable(By.cssSelector(
+                		"button[data-testid='question-next-btn']")));
+            nextBtn.click();
+            Thread.sleep(500);
 
-		WebElement element11 = wait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='Default Template']")));
-		element11.click();
+        // Click "Select specific members" option
+            String teamMateName1 = "Yesh Sharma";
+            String teamMateName = "1";
+            WebElement teamSelector = wait.until(
+                    ExpectedConditions.elementToBeClickable(
+                        By.xpath("//span[normalize-space()='All Team Members']")));
+            teamSelector.click();
 
-		WebElement element12 = wait.until(ExpectedConditions
-				.visibilityOfElementLocated(By.cssSelector("div[class='flex flex-1 justify-center']")));
-		element12.click();
+            WebElement nameInput = wait.until(
+                ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[class='ant-input']")));
+            nameInput.sendKeys(teamMateName);
+            Thread.sleep(2000);
+            WebElement teamOption = wait.until(
+                    ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div[class='flex gap-2 items-center select-none']")));
+            teamOption.click();
+            
+            Thread.sleep(3000);
+            
+           
+            
+            WebElement freqCycle = wait.until(
+                    ExpectedConditions.visibilityOfElementLocated(By.xpath(
+            "//*[text()='Daily']")));
+            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block: 'center'});", freqCycle);
+            Thread.sleep(700);
+            freqCycle.click();
+            
+            WebElement endFeedbackDate = wait.until(
+                    ExpectedConditions.elementToBeClickable(By.xpath(
+            "//span[normalize-space()='Would you like to add an end date for the feedback?']")));
+            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block: 'center'});", endFeedbackDate);
+            Thread.sleep(700);
+            endFeedbackDate.click();
+            
+            WebElement calendar = wait.until(
+                    ExpectedConditions.visibilityOfElementLocated(By.cssSelector(
+            "div[class='ant-picker-input']")));
+            calendar.click();
+            
+            //calender
+    	
+            WebElement yearLabel = driver.findElement(By.cssSelector("button[aria-label='Choose a year']"));
+            yearLabel.click();
+            
+    		List<WebElement> years = driver.findElements(By.cssSelector("div[class*='ant-picker-cell-inner']"));
+    	        for (WebElement y : years) {
+    	            if (y.getText().equals(year)) {
+    	                y.click();
+    	                break;
+    	            }
+    	        }
+ 
+    	
+    	        List<WebElement> months = driver.findElements(By.cssSelector("div[class*='ant-picker-cell-inner']"));
+    	        for (WebElement m : months) {
+    	            if (m.getText().equals(month)) { 
+    	                m.click();
+    	                break;
+    	            }
+    	        }
+    		
+    	        List<WebElement> currentMonthDates = driver.findElements(
+    	                By.cssSelector("td.ant-picker-cell-in-view:not(.ant-picker-cell-disabled) div.ant-picker-cell-inner")
+    	        );
 
-		WebElement element13 = wait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[text()='Use Template']")));
-		element13.click();
+    	        Random random = new Random();
+    	        WebElement randomDate = currentMonthDates.get(random.nextInt(currentMonthDates.size()));
+    	        randomDate.click();
+    	        
+    	        Thread.sleep(2000);
+    		
+            WebElement nextBtn1 = wait.until(
+                    ExpectedConditions.elementToBeClickable(By.xpath("//div[normalize-space()='Next']")));
+             nextBtn1.click();
+                Thread.sleep(500);
+            
+            // Scroll to and click final submit button
+            WebElement submitBtn = wait.until(
+                ExpectedConditions.presenceOfElementLocated(By.cssSelector(
+                    "button[class='rounded-lg w-fit tracking-[0.5px] font-medium flex items-center gap-2 justify-center transition-all duration-200 ease-in-out disabled:cursor-default bg-teal-500 text-white hover:bg-teal-400 active:bg-teal-300 disabled:bg-zinc-400 h-10 px-3 py-2 text-sm relative'] div[class='flex items-center gap-2 justify-center']")));
+            scrollAndClick(submitBtn);
 
-		Actions actions1 = new Actions(driver);
-		WebElement element2 = wait.until(ExpectedConditions
-				.visibilityOfElementLocated(By.xpath("//button[@data-testid='feedback-scratch-next-btn']")));
+            // Click final confirmation
+            WebElement confirmText = wait.until(
+                ExpectedConditions.elementToBeClickable(By.cssSelector(
+                    "div[class='ant-notification-notice ant-notification-notice-success ant-notification-notice-closable']")));
+          String confText = confirmText.getText();
+            Assert.assertEquals(confText, "Feedback Assigned Successfully");
+    }	
+	// public void userCanAskForFeedbackFromWholeTeam() throws InterruptedException {
 
-		actions1.moveToElement(element2);
-		actions1.perform();
-		element2.click();
-		WebElement element21 = wait.until(
-				ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@data-testid='question-next-btn']")));
-		actions1.moveToElement(element21);
-		actions1.perform();
-		element21.click();
+	// 	Goto();
+	// 	loginApplication();
+ // 	 	closePopup();
+ //        clickFeedbacksMenu();
+ //        clickRequestFeedbackButton();
+        
+ //        Thread.sleep(1000);
+        
+ //        // Click use template option
+ //        WebElement fromTemplateCard = wait.until(
+ //            ExpectedConditions.elementToBeClickable(
+ //                By.xpath("//div[normalize-space()='From a Template']")));
+ //        fromTemplateCard.click();
 
-		WebElement element3 = wait.until(ExpectedConditions
-				.visibilityOfElementLocated(By.cssSelector("div[data-testid='tab-button-Select Team']")));
+ //        WebElement searchTemplate = wait.until(
+ //                ExpectedConditions.elementToBeClickable(
+ //                    By.cssSelector("input[type='text']")));
+ //        searchTemplate.sendKeys("Template from scratch");
+ //        Thread.sleep(500);
+ //        WebElement searchedTemplate = wait.until(
+ //                ExpectedConditions.elementToBeClickable(
+ //                    By.cssSelector("div[data-testid='feedback-template-item-0']")));
+ //        searchedTemplate.click();
+        
+ //        Thread.sleep(1000); // Wait for templates to load
+      
+ //        // Click through first two steps     
+ //        WebElement nextBtn = wait.until(
+ //                ExpectedConditions.elementToBeClickable(By.cssSelector(
+ //                		"button[data-testid='question-next-btn']")));
+ //            nextBtn.click();
+ //            Thread.sleep(500);
 
-		element3.click();
-		WebElement element33 = wait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='frontend']")));
-		element33.click();
+ //        // Click "All team Number" option
+         
+ //            WebElement selectTeam = driver.findElement(By.xpath("//span[normalize-space()='Select Team']"));
+ //            selectTeam.click();
+            
+ //            List<WebElement> teamOption = driver.findElements(By.cssSelector("div[class*='flex justify-between items-center cursor-pointer hover:bg-blue-50 p-2']"));
+        	
+	//         for (WebElement teamMate : teamOption) {
+	//         	teamMate.click();
+	//         }
+ //            Thread.sleep(3000);
+            
+    		
+ //            WebElement nextBtn1 = wait.until(
+ //                    ExpectedConditions.elementToBeClickable(By.xpath("//div[normalize-space()='Next']")));
+ //             nextBtn1.click();
+ //                Thread.sleep(500);
+            
+ //            // Scroll to and click final submit button
+ //            WebElement submitBtn = wait.until(
+ //                ExpectedConditions.presenceOfElementLocated(By.cssSelector(
+ //                    "button[class='rounded-lg w-fit tracking-[0.5px] font-medium flex items-center gap-2 justify-center transition-all duration-200 ease-in-out disabled:cursor-default bg-teal-500 text-white hover:bg-teal-400 active:bg-teal-300 disabled:bg-zinc-400 h-10 px-3 py-2 text-sm relative'] div[class='flex items-center gap-2 justify-center']")));
+ //            scrollAndClick(submitBtn);
 
-		WebElement element4 = wait.until(
-				ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div[data-testid='memberList-0']")));
-		element4.click();
-
-		WebElement element5 = wait.until(ExpectedConditions
-				.visibilityOfElementLocated(By.cssSelector("button[data-testid='feedback-permission-next-btn']")));
-		actions1.moveToElement(element5);
-		actions1.perform();
-		element5.click();
-
-		WebElement element6 = wait.until(ExpectedConditions
-				.visibilityOfElementLocated(By.cssSelector("button[data-testid='feedback-preview-submit-btn']")));
-		actions1.moveToElement(element6);
-		actions1.perform();
-		element6.click();
-
-	}
-
-	public void userCanAskForFeedbackFromWholeTeam() throws InterruptedException {
-
-		Goto();
-		loginApplication();
-
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40));
-		avoidFeedbackpopup();
-		WebElement element = wait.until(
-				ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Feedbacks']")));
-		element.click();
-		avoidFeedbackpopup();
-		WebElement element1 = wait.until(ExpectedConditions
-				.visibilityOfElementLocated(By.cssSelector("a[data-testid='feedback-templates-btn']")));
-		element1.click();
-
-		WebElement element11 = wait.until(ExpectedConditions
-				.visibilityOfElementLocated(By.cssSelector("a[data-testid='feedback-templates-btn']")));
-		element11.click();
-
-		WebElement element12 = wait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='Default Template']")));
-		element12.click();
-
-		WebElement element13 = wait.until(ExpectedConditions
-				.visibilityOfElementLocated(By.cssSelector("div[class='flex flex-1 justify-center']")));
-		element13.click();
-
-		WebElement element14 = wait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[text()='Use Template']")));
-		element14.click();
-
-		WebElement element2 = wait.until(ExpectedConditions
-				.visibilityOfElementLocated(By.xpath("//button[@data-testid='feedback-scratch-next-btn']")));
-		element2.click();
-		Actions actions1 = new Actions(driver);
-		WebElement element21 = wait.until(
-				ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@data-testid='question-next-btn']")));
-		actions1.moveToElement(element21);
-		actions1.perform();
-		element21.click();
-
-		WebElement element3 = wait.until(ExpectedConditions
-				.visibilityOfElementLocated(By.cssSelector("div[data-testid='tab-button-Select Team']")));
-
-		element3.click();
-		WebElement element33 = wait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='frontend']")));
-		element33.click();
-
-		WebElement element4 = wait.until(
-				ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div[data-testid='memberList-0']")));
-		element4.click();
-
-		// WebElement element44 = wait.until(
-		// ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div[data-testid='memberList-1']")));
-		// element44.click();
-
-		WebElement element5 = wait.until(ExpectedConditions
-				.visibilityOfElementLocated(By.cssSelector("button[data-testid='feedback-permission-next-btn']")));
-		actions1.moveToElement(element5);
-		actions1.perform();
-		element5.click();
-
-		WebElement element6 = wait.until(ExpectedConditions
-				.visibilityOfElementLocated(By.cssSelector("button[data-testid='feedback-preview-submit-btn']")));
-		actions1.moveToElement(element6);
-		actions1.perform();
-		element6.click();
-
-	}
+ //            // Click final confirmation
+ //            WebElement confirmText = wait.until(
+ //                ExpectedConditions.elementToBeClickable(By.cssSelector(
+ //                    "div[class='ant-notification-notice ant-notification-notice-success ant-notification-notice-closable']")));
+ //          String confText = confirmText.getText();
+ //            Assert.assertEquals(confText, "Feedback Assigned Successfully");
+	// }
 
 	public void usersCanSeeAllTheFeedbackTheyHaveReceived() throws InterruptedException {
 
@@ -285,7 +496,6 @@ public class TestingOfFeedbackPage extends BaseTest {
 		WebElement element1 = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='Received']")));
 		element1.click();
-
 	}
 
 	public void userCanShortAndFilterFeedbackByPending() throws InterruptedException {
@@ -299,15 +509,17 @@ public class TestingOfFeedbackPage extends BaseTest {
 				ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Feedbacks']")));
 		element.click();
 		avoidFeedbackpopup();
-		WebElement element1 = wait
+		WebElement recievedTab = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='Received']")));
-		element1.click();
-		WebElement element3 = wait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("span[title='All']")));
-		element3.click();
-		WebElement element4 = wait.until(ExpectedConditions.visibilityOfElementLocated(
-				By.cssSelector("div[title='Pending'] div[class='ant-select-item-option-content']")));
-		element4.click();
+		recievedTab.click();
+		   WebElement filterDropdown = wait
+				.until(ExpectedConditions.elementToBeClickable(By.xpath("(//span[normalize-space()='All'])[2]")));
+		filterDropdown.click();
+
+		  WebElement selectOption = wait.until(ExpectedConditions
+				.visibilityOfAllElementsLocatedBy(By.xpath("//div[normalize-space()='Pending']")));
+			selectOption.click();
+			Thread.sleep(3000);
 
 	}
 
@@ -322,15 +534,17 @@ public class TestingOfFeedbackPage extends BaseTest {
 				ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='Feedbacks']")));
 		element.click();
 		avoidFeedbackpopup();
-		WebElement element1 = wait
+		WebElement recievedTab = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='Received']")));
-		element1.click();
-		WebElement element3 = wait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("span[title='All']")));
-		element3.click();
-		WebElement element4 = wait.until(ExpectedConditions.visibilityOfElementLocated(
-				By.cssSelector("div[title='Answered'] div[class='ant-select-item-option-content']")));
-		element4.click();
+		recievedTab.click();
+		   WebElement filterDropdown = wait
+				.until(ExpectedConditions.elementToBeClickable(By.xpath("(//span[normalize-space()='All'])[2]")));
+		filterDropdown.click();
+
+		  WebElement selectOption = wait.until(ExpectedConditions
+				.visibilityOfAllElementsLocatedBy(By.xpath("//div[normalize-space()='Answered']")));
+			selectOption.click();
+			Thread.sleep(3000);
 
 	}
 
