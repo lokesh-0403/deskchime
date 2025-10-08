@@ -27,8 +27,8 @@ import utility.ConfigReader;
 
 public class BaseTest {
 
-	public string email = "yesh@zasyasolutions.com";
-	public string password = "Yesh255198@";
+	public String emails = "yesh@zasyasolutions.com";
+	public String passwords = "Yesh255198@";
 	
 	public WebDriver driver;
 	ConfigReader config = new ConfigReader(); // Instance of ConfigReader
@@ -70,16 +70,17 @@ public class BaseTest {
 	public void loginApplication() throws InterruptedException {
 
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(100));
-
+		WebElement login = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@href='/auth/login']")));
+		login.click();
 		WebElement email = wait.until(
 				ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[placeholder='Email address']")));
 
-		email.sendKeys(email);
+		email.sendKeys(emails);
 
 		WebElement password = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[placeholder='Password']")));
 
-		password.sendKeys(password);
+		password.sendKeys(passwords);
 		WebElement submitbutton = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[type='submit']")));
 
@@ -89,13 +90,13 @@ public class BaseTest {
 
 	public void Goto() {
 		driver.manage().deleteAllCookies();
-		driver.get("https://deskchime.com/auth/login");
+		driver.get("https://deskchime.com");
 
 	}
 
 	public void avoidFeedbackpopup() {
 		try {
-			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 			WebElement skipButton = wait
 					.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[normalize-space()='Skip']")));
 

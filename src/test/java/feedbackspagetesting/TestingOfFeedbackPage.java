@@ -1,25 +1,42 @@
 package feedbackspagetesting;
 
 import java.time.Duration;
+import java.util.List;
+import java.util.Random;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import com.github.javafaker.Faker;
 import basetest.BaseTest;
-@Test
-public class TestingOfFeedbackPage extends BaseTest {
 
+	@Test
+	public class TestingOfFeedbackPage extends BaseTest {
+
+	private WebDriverWait wait;
+	public String year = "2025";
+	public String month = "Oct";
 	public TestingOfFeedbackPage() {
 		super(); // This will initialize the WebDriver in the BaseTest class
 	}
   // Reusable method to login and close popup
     private void closePopup() throws InterruptedException {
       
+    	  try {
+              WebElement skipPopup = wait.until(
+                  ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[normalize-space()='Skip']")));
+              skipPopup.click();
+          } catch (Exception e) {
+              System.out.println("No popup found or already closed");
+          }
+    	  Thread.sleep(1000);
         try {
             WebElement feedbackPopup = wait.until(
                 ExpectedConditions.elementToBeClickable(By.cssSelector("button[aria-label='Close']")));
@@ -27,7 +44,7 @@ public class TestingOfFeedbackPage extends BaseTest {
         } catch (Exception e) {
             System.out.println("No popup found or already closed");
         }
-        Thread.sleep(5000);   
+        Thread.sleep(1000);   
         try {
             WebElement skipPopup = wait.until(
                 ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[normalize-space()='Skip']")));
@@ -75,12 +92,18 @@ public class TestingOfFeedbackPage extends BaseTest {
         wait.until(ExpectedConditions.elementToBeClickable(element));
         element.click();
     }
+    
+    @BeforeMethod
+    public void initWait() {
+        wait = new WebDriverWait(driver, Duration.ofSeconds(3));
+    }
 
- 
+
+
     public void templateCreation() throws InterruptedException {
-      	goto();
+      	Goto();
 		loginApplication();
-		closePopup()
+		closePopup();
         clickFeedbacksMenu();
         clickTemplatesButton();
         Thread.sleep(1000);
@@ -210,7 +233,7 @@ public class TestingOfFeedbackPage extends BaseTest {
                 		   "//div[normalize-space()='Update']")));
         
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block: 'center'});", updateBtn);
-        
+        updateBtn.click();
         System.out.println("Template edited successfully!");
     }
 
@@ -250,7 +273,7 @@ public class TestingOfFeedbackPage extends BaseTest {
         
 
         // Select team      
-        String teamMateName = "Yesh Sharma";
+        String teamMateName = "Lokesh";
         WebElement teamSelector = wait.until(
                 ExpectedConditions.elementToBeClickable(
                     By.xpath("//span[normalize-space()='All Team Members']")));
@@ -291,7 +314,7 @@ public class TestingOfFeedbackPage extends BaseTest {
         }
         }
 
-//    @Test(dataProvider="getData")
+//    @Test
     public void userCanAskForFeedbackFromSpecificTeamMember() throws InterruptedException {
       	Goto();
 		loginApplication();
@@ -310,8 +333,8 @@ public class TestingOfFeedbackPage extends BaseTest {
         WebElement searchTemplate = wait.until(
                 ExpectedConditions.elementToBeClickable(
                     By.cssSelector("input[type='text']")));
-        searchTemplate.sendKeys("Template from scratch");
-        Thread.sleep(500);
+        searchTemplate.sendKeys("Template form scratch");
+        Thread.sleep(1000);
         WebElement searchedTemplate = wait.until(
                 ExpectedConditions.elementToBeClickable(
                     By.cssSelector("div[data-testid='feedback-template-item-0']")));
@@ -327,8 +350,8 @@ public class TestingOfFeedbackPage extends BaseTest {
             Thread.sleep(500);
 
         // Click "Select specific members" option
-            String teamMateName1 = "Yesh Sharma";
-            String teamMateName = "1";
+            String teamMateName = "Lokesh Sharma";
+          
             WebElement teamSelector = wait.until(
                     ExpectedConditions.elementToBeClickable(
                         By.xpath("//span[normalize-space()='All Team Members']")));
@@ -415,6 +438,8 @@ public class TestingOfFeedbackPage extends BaseTest {
           String confText = confirmText.getText();
             Assert.assertEquals(confText, "Feedback Assigned Successfully");
     }	
+    
+    
 	// public void userCanAskForFeedbackFromWholeTeam() throws InterruptedException {
 
 	// 	Goto();
@@ -515,9 +540,9 @@ public class TestingOfFeedbackPage extends BaseTest {
 		   WebElement filterDropdown = wait
 				.until(ExpectedConditions.elementToBeClickable(By.xpath("(//span[normalize-space()='All'])[2]")));
 		filterDropdown.click();
-
+		Thread.sleep(1000);
 		  WebElement selectOption = wait.until(ExpectedConditions
-				.visibilityOfAllElementsLocatedBy(By.xpath("//div[normalize-space()='Pending']")));
+				.presenceOfElementLocated(By.xpath("(//div[normalize-space()='Pending'])[1]")));
 			selectOption.click();
 			Thread.sleep(3000);
 
@@ -540,9 +565,9 @@ public class TestingOfFeedbackPage extends BaseTest {
 		   WebElement filterDropdown = wait
 				.until(ExpectedConditions.elementToBeClickable(By.xpath("(//span[normalize-space()='All'])[2]")));
 		filterDropdown.click();
-
+		Thread.sleep(1000);
 		  WebElement selectOption = wait.until(ExpectedConditions
-				.visibilityOfAllElementsLocatedBy(By.xpath("//div[normalize-space()='Answered']")));
+				.presenceOfElementLocated(By.xpath("//div[normalize-space()='Answered']")));
 			selectOption.click();
 			Thread.sleep(3000);
 
