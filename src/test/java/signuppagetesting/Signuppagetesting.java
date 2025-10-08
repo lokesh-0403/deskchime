@@ -13,186 +13,293 @@ import org.testng.annotations.Test;
 
 import loginpagetesting.ChromeOptionsConfig;
 
-
-
 @Test
 public class Signuppagetesting {
+  private WebDriver driver;
+    private WebDriverWait wait;
 
+    // Initialize driver and wait
+    private void initDriver() {
+        driver = new ChromeDriver();
+        driver.manage().window().maximize();
+        wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        driver.get("https://deskchime.com/");
+    }
 
+    // Helper method for JS click
+    private void clickJS(WebElement element) {
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
+    }
 
-	public void successfulregistration() throws InterruptedException {
-		WebDriver driver = new ChromeDriver(ChromeOptionsConfig.getChromeOptions());
+    // --- Successful Registration ---
+//    @Test
+    public void successfulregistration() {
+        initDriver();
 
-		driver.get("https://deskchime.com/");
-		Thread.sleep(3000);
-		driver.findElement(By.cssSelector("a[href='/auth/login']")).click();
-		driver.findElement(By.cssSelector("a[data-testid='login-sign-in-btn']")).click();
-		Thread.sleep(3000);
+        // Wait for homepage load
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(text(),'Log in')]")));
 
-		driver.findElement(By.id("register-form_first_name")).sendKeys("sharma");
-		driver.findElement(By.id("register-form_company_name")).sendKeys("llo");
-		driver.findElement(By.id("register-form_company_slug")).sendKeys("lol");
-		driver.findElement(By.id("register-form_password")).sendKeys("Hp31c3329@");
-		driver.findElement(By.id("register-form_confirm_password")).sendKeys("Hp31c3329@");
-		WebElement element = driver.findElement(By.cssSelector("button[type='submit']"));
-		JavascriptExecutor executor = (JavascriptExecutor) driver;
-		executor.executeScript("arguments[0].click();", element);
-		driver.close();
+        // Click Log in
+        WebElement loginBtn = wait.until(ExpectedConditions.elementToBeClickable(
+                By.xpath("//div[contains(text(),'Log in')]")));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", loginBtn);
+        clickJS(loginBtn);
 
-	}
-@Test
-	public void emptyfields() throws InterruptedException {
+        // Click Sign up
+        WebElement signUpBtn = wait.until(ExpectedConditions.elementToBeClickable(
+                By.xpath("//div[contains(text(),'Sign Up')]")));
+       
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", signUpBtn);
+        clickJS(signUpBtn);
 
-		WebDriver driver = new ChromeDriver(ChromeOptionsConfig.getChromeOptions());
+        // Wait until signup form appears
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("register-form_first_name")));
 
-		driver.get("https://deskchime.com/");
+        // Fill registration details
+        driver.findElement(By.id("register-form_first_name")).sendKeys("Test User");
+        driver.findElement(By.id("register-form_company_name")).sendKeys("Treasor");
+        driver.findElement(By.id("register-form_company_slug")).sendKeys("kratos");
+        driver.findElement(By.id("register-form_email")).sendKeys("testuser2@citmo.net");
+        driver.findElement(By.id("register-form_password")).sendKeys("Mmpl@2025");
+        driver.findElement(By.id("register-form_confirm_password")).sendKeys("Mmpl@2025");
 
+        WebElement signUpButton = wait.until(ExpectedConditions.elementToBeClickable(
+                By.xpath("//div[normalize-space()='Sign Up']")));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", signUpButton);
+        clickJS(signUpButton);
 
-		driver.findElement(By.cssSelector("a[href='/auth/login']")).click();
-		driver.findElement(By.cssSelector("a[data-testid='login-sign-in-btn']")).click();
-		Thread.sleep(3000);
-		driver.findElement(By.id("email")).sendKeys("cuzofa@citmo.net");
-		driver.findElement(By.xpath("//*[@id=\"__next\"]/div/div[2]/div[1]/div[1]/form/button/div")).click();
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-		driver.findElement(By.id("register-form_first_name")).sendKeys("sharma");
-		driver.findElement(By.id("register-form_password")).sendKeys("Hp31c3329@");
-		driver.findElement(By.id("register-form_confirm_password")).sendKeys("Hp31c3329@");
-		WebElement element = driver.findElement(By.cssSelector("button[type='submit']"));
-		JavascriptExecutor executor = (JavascriptExecutor) driver;
-		executor.executeScript("arguments[0].click();", element);
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-		Thread.sleep(2000);
-		System.out.println(
-				driver.findElement(By.xpath("//div[contains(text(),'Please enter your company name!')]")).getText());
-		System.out.println(driver
-				.findElement(By.xpath("//div[contains(text(),'Please enter your company subdomain!')]")).getText());
-		driver.close();
-	}
+        // Continue with next steps after registration success
+        wait.until(ExpectedConditions.visibilityOfElementLocated(
+                By.xpath("//div[contains(text(),'Registration Successful!')]")));
 
-	public void invalidemailformat() throws InterruptedException {
-		WebDriver driver = new ChromeDriver(ChromeOptionsConfig.getChromeOptions());
+        // Then proceed to login
+        WebElement firstName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("email")));
+        firstName.sendKeys("testuser@citmo.net");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("password"))).sendKeys("Mmpl@2025");
 
-		driver.get("https://deskchime.com/");
-		Thread.sleep(3000);
-		driver.findElement(By.cssSelector("a[href='/auth/login']")).click();
-		driver.findElement(By.cssSelector("a[data-testid='login-sign-in-btn']")).click();
-		Thread.sleep(3000);
-		driver.findElement(By.id("email")).sendKeys("cuzofa@citmo.net");
-		driver.findElement(By.xpath("//*[@id=\"__next\"]/div/div[2]/div[1]/div[1]/form/button/div")).click();
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-		driver.findElement(By.id("register-form_first_name")).sendKeys("sharma");
-		driver.findElement(By.id("register-form_company_name")).sendKeys("llo");
-		driver.findElement(By.id("register-form_company_slug")).sendKeys("lol");
-		Thread.sleep(2000);
-		WebElement w1 = driver.findElement(By.xpath("//input[@id='register-form_email']"));
-		w1.sendKeys(Keys.chord(Keys.CONTROL, "a"));
+        WebElement submitBtn = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button[type='submit']")));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", submitBtn);
+        clickJS(submitBtn);
 
-		// Simulate pressing Backspace to clear the selected text
-		w1.sendKeys(Keys.BACK_SPACE);
+        driver.quit();
+    }
 
-		w1.sendKeys("yeshsharma516032gmail.com");
-		driver.findElement(By.id("register-form_password")).sendKeys("Hp31c3329@");
+    // --- Empty Fields Validation ---\
+//    @Test
+    public void emptyfields() {
+        initDriver();
 
-		WebElement element = driver.findElement(By.cssSelector("button[type='submit']"));
-		JavascriptExecutor executor = (JavascriptExecutor) driver;
-		executor.executeScript("arguments[0].click();", element);
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-		System.out.println(driver.findElement(By.xpath("//div[@class='ant-form-item-explain-error']")).getText());
-		driver.close();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(text(),'Log in')]")));
 
-	}
+        // Click Log in
+        WebElement loginBtn = wait.until(ExpectedConditions.elementToBeClickable(
+                By.xpath("//div[contains(text(),'Log in')]")));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", loginBtn);
+        clickJS(loginBtn);
 
-	public void existingemailaddress() throws InterruptedException {
+        // Click Sign up
+        WebElement signUpBtn = wait.until(ExpectedConditions.elementToBeClickable(
+                By.xpath("//div[contains(text(),'Sign Up')]")));
+       
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", signUpBtn);
+      
+        clickJS(signUpBtn);
 
-		WebDriver driver = new ChromeDriver(ChromeOptionsConfig.getChromeOptions());
+        // Wait until signup form appears
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("register-form_first_name")));
 
-		driver.get("https://deskchime.com/");
-		Thread.sleep(3000);
-		driver.findElement(By.cssSelector("a[href='/auth/login']")).click();
-		driver.findElement(By.cssSelector("a[data-testid='login-sign-in-btn']")).click();
-		Thread.sleep(3000);
-		driver.findElement(By.id("email")).sendKeys("yesh@zasyasolutions.com");
-		driver.findElement(By.xpath("//*[@id=\"__next\"]/div/div[2]/div[1]/div[1]/form/button/div")).click();
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-		driver.findElement(By.id("register-form_first_name")).sendKeys("sharmfca");
-		driver.findElement(By.id("register-form_company_name")).sendKeys("lfgbdflo");
-		driver.findElement(By.id("register-form_company_slug")).sendKeys("lgbfgbol");
-		driver.findElement(By.id("register-form_password")).sendKeys("Hp31c3329@");
-		driver.findElement(By.id("register-form_confirm_password")).sendKeys("Hp31c3329@");
-		WebElement element = driver.findElement(By.cssSelector("button[type='submit']"));
-		JavascriptExecutor executor = (JavascriptExecutor) driver;
-		executor.executeScript("arguments[0].click();", element);
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-		Thread.sleep(2000);
-		WebElement W2 = driver.findElement(By.xpath("//div[@class='ant-notification-notice-message']"));
-		if (W2.isDisplayed()) {
-			String text = W2.getText();
-			System.out.println("popup message " + text);
+        // Fill registration details
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("register-form_first_name"))).sendKeys("Test User");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("register-form_password"))).sendKeys("Mmpl@2025");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("register-form_confirm_password"))).sendKeys("Mmpl@2025");
+        
+        WebElement signUpButton = wait.until(ExpectedConditions.elementToBeClickable(
+                By.xpath("//div[normalize-space()='Sign Up']")));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", signUpButton);
+        clickJS(signUpButton);
+        
+        String companyError = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                By.xpath("//div[contains(text(),'Please enter your company name!')]"))).getText();
+        String subdomainError = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                By.xpath("//div[contains(text(),'Please enter your company subdomain!')]"))).getText();
 
-		}
-		driver.close();
-	}
+        System.out.println(companyError);
+        System.out.println(subdomainError);
 
-	public void passwordstrength() throws InterruptedException {
+        driver.close();
+    }
 
-		WebDriver driver = new ChromeDriver(ChromeOptionsConfig.getChromeOptions());
+    // --- Invalid Email Format ---
+//    @Test
+    public void invalidemailformat() {
+        initDriver();
 
-		driver.get("https://deskchime.com/");
-		Thread.sleep(3000);
-		driver.findElement(By.cssSelector("a[href='/auth/login']")).click();
-		driver.findElement(By.cssSelector("a[data-testid='login-sign-in-btn']")).click();
-		Thread.sleep(3000);
-		driver.findElement(By.id("email")).sendKeys("yesh@zsayasolutions.com");
-		driver.findElement(By.xpath("//*[@id=\"__next\"]/div/div[2]/div[1]/div[1]/form/button/div")).click();
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-		driver.findElement(By.id("register-form_first_name")).sendKeys("sharma");
-		driver.findElement(By.id("register-form_company_name")).sendKeys("llo");
-		driver.findElement(By.id("register-form_company_slug")).sendKeys("lol");
-		driver.findElement(By.id("register-form_password")).sendKeys("Hp31c332");
-		driver.findElement(By.id("register-form_confirm_password")).sendKeys("Hp31c332");
-		WebElement element = driver.findElement(By.cssSelector("button[type='submit']"));
-		JavascriptExecutor executor = (JavascriptExecutor) driver;
-		executor.executeScript("arguments[0].click();", element);
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-		Thread.sleep(2000);
-		WebElement W2 = driver.findElement(By.xpath("//div[@class='ant-form-item-explain-error']"));
-		if (W2.isDisplayed()) {
-			String text = W2.getText();
-			System.out.println("popup message " + text);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(text(),'Log in')]")));
 
-		}
-		driver.close();
-	}
+        // Click Log in
+        WebElement loginBtn = wait.until(ExpectedConditions.elementToBeClickable(
+                By.xpath("//div[contains(text(),'Log in')]")));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", loginBtn);
+        clickJS(loginBtn);
 
-	public void passwordconfirmation() throws InterruptedException {
+        // Click Sign up
+        WebElement signUpBtn = wait.until(ExpectedConditions.elementToBeClickable(
+                By.xpath("//div[contains(text(),'Sign Up')]")));
+       
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", signUpBtn);
+      
+        clickJS(signUpBtn);
 
-		WebDriver driver = new ChromeDriver(ChromeOptionsConfig.getChromeOptions());
+        // Wait until signup form appears
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("register-form_first_name")));
 
-		driver.get("https://deskchime.com/");
-		Thread.sleep(3000);
-		driver.findElement(By.cssSelector("a[href='/auth/login']")).click();
-		driver.findElement(By.cssSelector("a[data-testid='login-sign-in-btn']")).click();
-		Thread.sleep(3000);
-		driver.findElement(By.id("email")).sendKeys("yesh@zsayasolutions.com");
-		driver.findElement(By.xpath("//*[@id=\"__next\"]/div/div[2]/div[1]/div[1]/form/button/div")).click();
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-		driver.findElement(By.id("register-form_first_name")).sendKeys("sharma");
-		driver.findElement(By.id("register-form_company_name")).sendKeys("llo");
-		driver.findElement(By.id("register-form_company_slug")).sendKeys("lol");
-		driver.findElement(By.id("register-form_password")).sendKeys("Hp31c3329@");
-		driver.findElement(By.id("register-form_confirm_password")).sendKeys("Hp31c332");
-		WebElement element = driver.findElement(By.cssSelector("button[type='submit']"));
-		JavascriptExecutor executor = (JavascriptExecutor) driver;
-		executor.executeScript("arguments[0].click();", element);
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-		Thread.sleep(2000);
-		WebElement W2 = driver.findElement(By.xpath("//div[@class='ant-form-item-explain-error']"));
-		if (W2.isDisplayed()) {
-			String text = W2.getText();
-			System.out.println("popup message " + text);
+        // Fill registration details
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("register-form_first_name"))).sendKeys("Test User");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("register-form_company_name"))).sendKeys("llo1");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("register-form_company_slug"))).sendKeys("lol1");
 
-		}
-		driver.close();
-	}
+        WebElement emailInput = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("register-form_email")));
+        emailInput.sendKeys(Keys.chord(Keys.CONTROL, "a"));
+        emailInput.sendKeys(Keys.BACK_SPACE);
+        emailInput.sendKeys("yeshsharma516032gmail.com");
+
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("register-form_password"))).sendKeys("Hp31c3329@");
+
+        WebElement submitBtn = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button[type='submit']")));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", submitBtn);
+        clickJS(submitBtn);
+
+        String error = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                By.xpath("//div[@class='ant-form-item-explain-error']"))).getText();
+        System.out.println(error);
+
+        driver.close();
+    }
+
+    // --- Existing Email Address --- 
+//    @Test
+    public void existingemailaddress() {
+        initDriver();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(text(),'Log in')]")));
+
+        // Click Log in
+        WebElement loginBtn = wait.until(ExpectedConditions.elementToBeClickable(
+                By.xpath("//div[contains(text(),'Log in')]")));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", loginBtn);
+        clickJS(loginBtn);
+
+        // Click Sign up
+        WebElement signUpBtn = wait.until(ExpectedConditions.elementToBeClickable(
+                By.xpath("//div[contains(text(),'Sign Up')]")));
+       
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", signUpBtn);
+        clickJS(signUpBtn);
+
+        // Wait until signup form appears
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("register-form_first_name")));
+
+        // Fill registration details
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("register-form_first_name"))).sendKeys("Test User");
+      
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("register-form_company_name"))).sendKeys("lfgbdfloa");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("register-form_company_slug"))).sendKeys("lgbfgbola");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("register-form_email"))).sendKeys("testuser2@citmo.net");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("register-form_password"))).sendKeys("Hp31c3329@");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("register-form_confirm_password"))).sendKeys("Hp31c3329@");
+
+        WebElement submitBtn = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button[type='submit']")));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", submitBtn);
+        clickJS(submitBtn);
+
+        WebElement notification = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                By.xpath("//div[@class='ant-notification-notice-message']")));
+        System.out.println("Popup message: " + notification.getText());
+
+        driver.close();
+    }
+
+    // --- Password Strength Validation ---
+//    @Test
+    public void passwordstrength() {
+        initDriver();
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(text(),'Log in')]")));
+
+        // Click Log in
+        WebElement loginBtn = wait.until(ExpectedConditions.elementToBeClickable(
+                By.xpath("//div[contains(text(),'Log in')]")));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", loginBtn);
+        clickJS(loginBtn);
+
+        // Click Sign up
+        WebElement signUpBtn = wait.until(ExpectedConditions.elementToBeClickable(
+                By.xpath("//div[contains(text(),'Sign Up')]")));
+       
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", signUpBtn);
+        clickJS(signUpBtn);
+
+        // Wait until signup form appears
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("register-form_first_name")));
+
+        // Fill registration details
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("register-form_first_name"))).sendKeys("Test User");
+      
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("register-form_company_name"))).sendKeys("lfgbdflob");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("register-form_company_slug"))).sendKeys("lgbfgbolb");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("register-form_password"))).sendKeys("Hp31c332");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("register-form_confirm_password"))).sendKeys("Hp31c332");
+
+        WebElement submitBtn = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button[type='submit']")));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", submitBtn);
+        clickJS(submitBtn);
+
+        WebElement error = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                By.xpath("//div[@class='ant-form-item-explain-error']")));
+        System.out.println("Popup message: " + error.getText());
+
+        driver.close();
+    }
+
+    // --- Password Confirmation ---
+//    @Test
+    public void passwordconfirmation() {
+        initDriver();
+
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(text(),'Log in')]")));
+
+        // Click Log in
+        WebElement loginBtn = wait.until(ExpectedConditions.elementToBeClickable(
+                By.xpath("//div[contains(text(),'Log in')]")));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", loginBtn);
+        clickJS(loginBtn);
+
+        // Click Sign up
+        WebElement signUpBtn = wait.until(ExpectedConditions.elementToBeClickable(
+                By.xpath("//div[contains(text(),'Sign Up')]")));
+       
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", signUpBtn);
+        clickJS(signUpBtn);
+
+        // Wait until signup form appears
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("register-form_first_name")));
+
+        // Fill registration details
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("register-form_first_name"))).sendKeys("Test User");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("register-form_company_name"))).sendKeys("llo2");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("register-form_company_slug"))).sendKeys("lol2");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("register-form_password"))).sendKeys("Hp31c3329@");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("register-form_confirm_password"))).sendKeys("Hp31c332");
+
+        WebElement submitBtn = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("button[type='submit']")));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", submitBtn);
+        clickJS(submitBtn);
+
+        WebElement error = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                By.xpath("//div[@class='ant-form-item-explain-error']")));
+        System.out.println("Popup message: " + error.getText());
+
+        driver.close();
+    }
+}
 
 }
