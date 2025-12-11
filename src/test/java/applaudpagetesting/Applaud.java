@@ -21,8 +21,7 @@ public class Applaud extends BaseTest {
 //	public Applaud() {
 //		super(); // This will initialize the WebDriver in the BaseTest class
 //	}
-
-//@Test
+//	@Test
 	public void sendApplaud() throws InterruptedException {
 
 		Goto();
@@ -111,7 +110,7 @@ public class Applaud extends BaseTest {
         }
 	}
 
-//	@Test
+	@Test
 	public void seeReceivedApplauds() throws InterruptedException {
 
 		Goto();

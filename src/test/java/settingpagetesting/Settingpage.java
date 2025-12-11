@@ -108,6 +108,7 @@ public class Settingpage extends BaseTest {
 		driver.close();
 	}
 
+	@Test
 	public void testingOfSettingPage() throws InterruptedException {
 		Goto();
 		loginApplication();

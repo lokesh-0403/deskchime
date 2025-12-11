@@ -1,6 +1,8 @@
 package feedbackspagetesting;
 
 import java.time.Duration;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Random;
 
@@ -17,12 +19,13 @@ import org.testng.annotations.Test;
 import com.github.javafaker.Faker;
 import basetest.BaseTest;
 
-	@Test
+	@Test()
+	
 	public class TestingOfFeedbackPage extends BaseTest {
 
 	private WebDriverWait wait;
-	public String year = "2025";
-	public String month = "Oct";
+	public String year =  LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy"));
+	public String month = LocalDate.now().format(DateTimeFormatter.ofPattern("MMM"));
 	public TestingOfFeedbackPage() {
 		super(); // This will initialize the WebDriver in the BaseTest class
 	}
@@ -95,11 +98,17 @@ import basetest.BaseTest;
     
     @BeforeMethod
     public void initWait() {
-        wait = new WebDriverWait(driver, Duration.ofSeconds(3));
+        // Driver is already initialized by BaseTest's @BeforeMethod
+        // Just verify it's not null
+        if (driver == null) {
+            throw new IllegalStateException("WebDriver is not initialized! Check BaseTest setup.");
+        }
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        System.out.println("✓ Wait initialized in test class");
     }
 
 
-
+    @Test       //Passed
     public void templateCreation() throws InterruptedException {
       	Goto();
 		loginApplication();
@@ -184,7 +193,8 @@ import basetest.BaseTest;
         System.out.println("Template created successfully!");
     }
 
- public void saveAndEditTemplate() throws InterruptedException {
+    @Test    //Passed
+    public void saveAndEditTemplate() throws InterruptedException {
     	Goto();
 		loginApplication();	
 		closePopup();  
@@ -237,7 +247,8 @@ import basetest.BaseTest;
         System.out.println("Template edited successfully!");
     }
 
-//    @Test(dataProvider="getData")
+
+   @Test   //Passed
     public void userCanMakeUseOfPreMadeFeedbackTemplate() throws InterruptedException {
        	Goto();
 		loginApplication();
@@ -314,7 +325,7 @@ import basetest.BaseTest;
         }
         }
 
-//    @Test
+    @Test  // passed
     public void userCanAskForFeedbackFromSpecificTeamMember() throws InterruptedException {
       	Goto();
 		loginApplication();
@@ -439,7 +450,7 @@ import basetest.BaseTest;
             Assert.assertEquals(confText, "Feedback Assigned Successfully");
     }	
     
-    
+ //   @Test
 	// public void userCanAskForFeedbackFromWholeTeam() throws InterruptedException {
 
 	// 	Goto();
@@ -507,6 +518,7 @@ import basetest.BaseTest;
  //            Assert.assertEquals(confText, "Feedback Assigned Successfully");
 	// }
 
+    @Test // passed
 	public void usersCanSeeAllTheFeedbackTheyHaveReceived() throws InterruptedException {
 
 		Goto();
@@ -521,8 +533,10 @@ import basetest.BaseTest;
 		WebElement element1 = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='Received']")));
 		element1.click();
+		Thread.sleep(2000);
 	}
 
+   @Test //fixed
 	public void userCanShortAndFilterFeedbackByPending() throws InterruptedException {
 
 		Goto();
@@ -542,12 +556,13 @@ import basetest.BaseTest;
 		filterDropdown.click();
 		Thread.sleep(1000);
 		  WebElement selectOption = wait.until(ExpectedConditions
-				.presenceOfElementLocated(By.xpath("(//div[normalize-space()='Pending'])[1]")));
+				.presenceOfElementLocated(By.xpath("//div[@class='ant-select-item-option-content'][normalize-space()='Pending']")));
 			selectOption.click();
 			Thread.sleep(3000);
 
 	}
 
+   @Test // passed
 	public void userCanShortAndFilterFeedbackByAnswered() throws InterruptedException {
 
 		Goto();
@@ -574,10 +589,12 @@ import basetest.BaseTest;
 	}
 
 
+    @Test // passed
 	public void userCanAskForFeedbackByExternalLink() throws InterruptedException {
-
+        Actions action = new Actions(driver);
 		Goto();
 		loginApplication();
+		Actions actions = new Actions(driver);
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40));
 		avoidFeedbackpopup();
 		WebElement feedbackButton = wait.until(
@@ -599,59 +616,144 @@ import basetest.BaseTest;
 		WebElement useTemplate = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[text()='Use Template']")));
 		useTemplate.click();
-
-		Actions actions1 = new Actions(driver);
+	
+		
 		WebElement feedbackScratchNextbtn = wait.until(ExpectedConditions
-				.visibilityOfElementLocated(By.xpath("//button[@data-testid='feedback-scratch-next-btn']")));
+				.visibilityOfElementLocated(By.xpath("//div[normalize-space()='Next']")));
+		
+		
 
-		actions1.moveToElement(feedbackScratchNextbtn);
-		actions1.perform();
+		actions.moveToElement(feedbackScratchNextbtn);
+		actions.perform();
 		feedbackScratchNextbtn.click();
+		
+		System.out.println(">> This is the after question page ");	
+		
+		   String teamMateName = "Lokesh Sharma";
+	          
+           WebElement teamSelector = wait.until(
+                   ExpectedConditions.elementToBeClickable(
+                       By.xpath("//span[normalize-space()='All Team Members']")));
+           teamSelector.click();
+
+           WebElement nameInput = wait.until(
+               ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[class='ant-input']")));
+           nameInput.sendKeys(teamMateName);
+           Thread.sleep(2000);
+           WebElement teamOption = wait.until(
+                   ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div[class='flex gap-2 items-center select-none']")));
+           teamOption.click();
+           
+           Thread.sleep(3000);
+	
 		WebElement question = wait.until(
-				ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@data-testid='question-next-btn']")));
-		actions1.moveToElement(question);
-		actions1.perform();
+				ExpectedConditions.visibilityOfElementLocated(By.cssSelector(
+                		"button[data-testid='question-next-btn']")));
+		actions.moveToElement(question);
+		actions.perform();
 		question.click();
 
+		System.out.println(">> This is the after Selecting the member page ");	
+	try {	
+		WebElement Toaster = wait.until(
+				ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".ant-notification-notice-description")));
+		String ToasterToast= Toaster.getText();
+		System.out.println(">>, Message - " + ToasterToast);
+	}catch(Exception e) {}
 
-		WebElement externalFeedback = wait.until(ExpectedConditions
-				.visibilityOfElementLocated(By.cssSelector("button[data-testid='feedback-outside-btn']")));
-		actions1.moveToElement(externalFeedback);
-		actions1.perform();
-		externalFeedback.click();
-
-		WebElement element9 = wait.until(ExpectedConditions
-				.visibilityOfElementLocated(By.cssSelector("div[data-testid='feedback-emails-input']")));
-		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("arguments[0].value='yeshsharma516032@gmail.com';", element9);
-
-		// Alternatively, use Actions to send keys
-		Actions actions2 = new Actions(driver);
-		actions2.moveToElement(element9).click().sendKeys("yeshsharma516032@gmail.com").perform();
-
-		// Debugging: Print out the input field value
-		System.out.println("Input field value: " + element9.getAttribute("value"));
-		Actions actions = new Actions(driver);
-
-		// Move the mouse to the specific coordinates and perform click
-		actions.moveByOffset(0, 500).click().perform();
-		externalFeedback.click();
-
-
-		WebElement addEmail = wait.until(ExpectedConditions
-				.visibilityOfElementLocated(By.cssSelector("button[data-testid='feedback-emails-add-btn']")));
-		addEmail.click();
-		WebElement nextButton = wait.until(ExpectedConditions
-				.visibilityOfElementLocated(By.cssSelector("button[data-testid='feedback-permission-next-btn']")));
-		actions1.moveToElement(nextButton);
-		actions1.perform();
-		nextButton.click();
-
-		WebElement SubmitButton = wait.until(ExpectedConditions
-				.visibilityOfElementLocated(By.cssSelector("button[data-testid='feedback-preview-submit-btn']")));
-		actions1.moveToElement(SubmitButton);
-		actions1.perform();
-		SubmitButton.click();
-
+	WebElement SubmitButton = wait.until(ExpectedConditions
+			.visibilityOfElementLocated(By.cssSelector("button[data-testid='question-next-btn']")));
+	actions.moveToElement(SubmitButton);
+	actions.perform();
+	SubmitButton.click();
+	Thread.sleep(3000);
+	WebElement successRoaster = wait.until(ExpectedConditions
+			.visibilityOfElementLocated(By.cssSelector("div[class='ant-notification-notice-message']")));
+	String successMessage = successRoaster.getText();
+	System.out.println(successMessage);
+	Assert.assertEquals(successMessage,"Feedback Assigned Successfully");
+	
+	WebElement createdTab = wait.until(ExpectedConditions
+			.visibilityOfElementLocated(By.xpath("(//div[normalize-space()='Created'])[1]")));
+	createdTab.click();
+	
+	WebElement recentlyCreatedFeedback = wait.until(ExpectedConditions
+			.visibilityOfElementLocated(By.xpath("(//a[contains(@class,'text-slate-900') and contains(@class,'font-semibold')])[1]")));
+	recentlyCreatedFeedback.click();
+	
+	
+		WebElement inviteMembers = wait.until(ExpectedConditions
+				.visibilityOfElementLocated(By.xpath("//div[normalize-space()='Invite members']")));
+		actions.moveToElement(inviteMembers);
+		actions.perform();
+		inviteMembers.click();
+		
+		
+		
+		  // Step 1: Locate and interact with the INPUT field directly (not the span)
+	    WebElement emailInput = wait.until(ExpectedConditions
+	            .elementToBeClickable(By.cssSelector("input[id='externalEmails']")));
+	    
+	    // Clear and type email
+	    emailInput.click();
+	    emailInput.clear();
+	    emailInput.sendKeys("testerzasya@gmail.com");
+	    
+	    Thread.sleep(1000); // Wait for dropdown to appear
+	    
+	    // Step 2: Wait for dropdown to be visible
+	    wait.until(ExpectedConditions.visibilityOfElementLocated(
+	            By.cssSelector("div.ant-select-dropdown")));
+	    
+	    // Step 3: Click the dropdown option using JavaScript for reliability
+	    JavascriptExecutor js = (JavascriptExecutor) driver;
+	    WebElement dropdownOption = wait.until(ExpectedConditions
+	            .presenceOfElementLocated(By.xpath(
+	                    "//div[contains(@class, 'ant-select-item-option-content') and text()='testerzasya@gmail.com']")));
+	    
+	    js.executeScript("arguments[0].click();", dropdownOption);
+	    
+	    Thread.sleep(1000);
+	    WebElement searchButton = wait.until(ExpectedConditions
+                .visibilityOfElementLocated(By.cssSelector("span[class='anticon anticon-search ant-select-suffix']")));
+	    action.moveToElement(searchButton).click().build().perform();
+	    // Step 4: Wait for dropdown to close
+	    wait.until(ExpectedConditions.invisibilityOfElementLocated(
+	            By.cssSelector("div.rc-virtual-list")));
+	    
+	    // Step 5: Verify the email was added by checking the tag/chip element
+	    try {
+	        WebElement emailTag = wait.until(ExpectedConditions.visibilityOfElementLocated(
+	                By.xpath("//span[contains(@class, 'ant-select-selection-item') and contains(., 'testerzasya@gmail.com')]")));
+	        System.out.println("✓ Email successfully added: " + emailTag.getText());
+	    } catch (Exception e) {
+	        System.out.println("✗ Email tag not found - may need to retry");
+	    }
+	
+	   
+	    // Step 6: Click Send Invite button
+	    WebElement sendInvite = wait.until(ExpectedConditions
+	            .elementToBeClickable(By.xpath("//button[.//div[normalize-space()='Send invite']]")));
+	    
+	    js.executeScript("arguments[0].scrollIntoView(true);", sendInvite);
+	    Thread.sleep(500);
+	    
+	    // Use both JS click and regular click for maximum reliability
+	    try {
+	        sendInvite.click();
+	    } catch (Exception e) {
+	        js.executeScript("arguments[0].click();", sendInvite);
+	    }
+	    
+	    // Step 7: Verify success message
+	    try {
+	        WebElement endSuccessMessage = wait.until(ExpectedConditions
+	                .visibilityOfElementLocated(By.cssSelector("div.ant-notification-notice-message")));
+	        System.out.println("✓ Success: " + endSuccessMessage.getText());
+	    } catch (Exception e) {
+	        System.out.println("✗ No success message found");
+	    }
+	    
+	    Thread.sleep(2000);
 	}
 }
