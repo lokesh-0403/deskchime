@@ -1,36 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="1" total="2" passed="0" failed="1" skipped="0">
+<testng-results ignored="0" total="4" passed="3" failed="1" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-12-10T18:05:09 IST" name="Default suite" finished-at="2025-12-10T18:05:45 IST" duration-ms="36274">
+  <suite started-at="2026-01-03T15:15:41 IST" name="Default suite" finished-at="2026-01-03T15:18:27 IST" duration-ms="166001">
     <groups>
     </groups>
-    <test started-at="2025-12-10T18:05:09 IST" name="Default test" finished-at="2025-12-10T18:05:45 IST" duration-ms="36274">
-      <class name="followupspagetesting.Followup1on1">
-        <test-method is-config="true" signature="setUp()[pri:0, instance:followupspagetesting.Followup1on1@2a5c8d3f]" started-at="2025-12-10T18:05:09 IST" name="setUp" finished-at="2025-12-10T18:05:11 IST" duration-ms="1888" status="PASS">
+    <test started-at="2026-01-03T15:15:41 IST" name="Default test" finished-at="2026-01-03T15:18:27 IST" duration-ms="166001">
+      <class name="goalpagetesting.TestingOfGoalpage">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:goalpagetesting.TestingOfGoalpage@31190526]" started-at="2026-01-03T15:15:41 IST" name="setUp" finished-at="2026-01-03T15:15:47 IST" duration-ms="6143" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="create1on1()[pri:0, instance:followupspagetesting.Followup1on1@2a5c8d3f]" started-at="2025-12-10T18:05:11 IST" name="create1on1" finished-at="2025-12-10T18:05:45 IST" duration-ms="34049" status="FAIL">
+        <test-method signature="userCanCreateGoalForselfDevelopment()[pri:1, instance:goalpagetesting.TestingOfGoalpage@31190526]" started-at="2026-01-03T15:15:47 IST" name="userCanCreateGoalForselfDevelopment" finished-at="2026-01-03T15:16:23 IST" duration-ms="36130" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- userCanCreateGoalForselfDevelopment -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:goalpagetesting.TestingOfGoalpage@31190526]" started-at="2026-01-03T15:16:23 IST" name="tearDown" finished-at="2026-01-03T15:16:23 IST" duration-ms="151" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:goalpagetesting.TestingOfGoalpage@31190526]" started-at="2026-01-03T15:16:23 IST" name="setUp" finished-at="2026-01-03T15:16:27 IST" duration-ms="3462" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="usersCanSeeCompletedGoals()[pri:3, instance:goalpagetesting.TestingOfGoalpage@31190526]" started-at="2026-01-03T15:16:27 IST" name="usersCanSeeCompletedGoals" finished-at="2026-01-03T15:17:04 IST" duration-ms="37287" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- usersCanSeeCompletedGoals -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:goalpagetesting.TestingOfGoalpage@31190526]" started-at="2026-01-03T15:17:04 IST" name="tearDown" finished-at="2026-01-03T15:17:04 IST" duration-ms="115" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:goalpagetesting.TestingOfGoalpage@31190526]" started-at="2026-01-03T15:17:04 IST" name="setUp" finished-at="2026-01-03T15:17:09 IST" duration-ms="5171" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="usersCanSeeActiveGoals()[pri:4, instance:goalpagetesting.TestingOfGoalpage@31190526]" started-at="2026-01-03T15:17:09 IST" name="usersCanSeeActiveGoals" finished-at="2026-01-03T15:17:50 IST" duration-ms="40742" status="FAIL">
           <exception class="org.openqa.selenium.TimeoutException">
             <message>
-              <![CDATA[Expected condition failed: waiting for visibility of all elements located by By.xpath: //div[@class='ant-select-item-option-content'] (tried for 25 second(s) with 500 milliseconds interval)
+              <![CDATA[Expected condition failed: waiting for basetest.BaseTest$$Lambda/0x000000012924d480@680d4a6a (tried for 40 second(s) with 500 milliseconds interval)
 Build info: version: '4.33.0', revision: '2c6aaad03a'
-System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.7'
+System info: os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '26.2', java.version: '21.0.9'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: true, browserName: chrome, browserVersion: 143.0.7499.40, chrome: {chromedriverVersion: 143.0.7499.40 (c23ff452476d..., userDataDir: C:\Users\admin\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:53140}, goog:processID: 8772, networkConnectionEnabled: false, pageLoadStrategy: eager, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:53140/devtoo..., se:cdpVersion: 143.0.7499.40, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 57ca088629e45eca127ab4970716a3c0]]>
+Capabilities {acceptInsecureCerts: true, browserName: chrome, browserVersion: 143.0.7499.169, chrome: {chromedriverVersion: 143.0.7499.169 (164b20aab62..., userDataDir: /var/folders/tp/6wqkcb7x735...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:52650}, goog:processID: 8391, networkConnectionEnabled: false, pageLoadStrategy: eager, platformName: mac, proxy: Proxy(), se:cdp: ws://localhost:52650/devtoo..., se:cdpVersion: 143.0.7499.169, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: b09458d1aa81e1a4c8b5084b913fc124]]>
             </message>
             <full-stacktrace>
-              <![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of all elements located by By.xpath: //div[@class='ant-select-item-option-content'] (tried for 25 second(s) with 500 milliseconds interval)
+              <![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for basetest.BaseTest$$Lambda/0x000000012924d480@680d4a6a (tried for 40 second(s) with 500 milliseconds interval)
 Build info: version: '4.33.0', revision: '2c6aaad03a'
-System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.7'
+System info: os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '26.2', java.version: '21.0.9'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: true, browserName: chrome, browserVersion: 143.0.7499.40, chrome: {chromedriverVersion: 143.0.7499.40 (c23ff452476d..., userDataDir: C:\Users\admin\AppData\Loca...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:53140}, goog:processID: 8772, networkConnectionEnabled: false, pageLoadStrategy: eager, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:53140/devtoo..., se:cdpVersion: 143.0.7499.40, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 57ca088629e45eca127ab4970716a3c0
+Capabilities {acceptInsecureCerts: true, browserName: chrome, browserVersion: 143.0.7499.169, chrome: {chromedriverVersion: 143.0.7499.169 (164b20aab62..., userDataDir: /var/folders/tp/6wqkcb7x735...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:52650}, goog:processID: 8391, networkConnectionEnabled: false, pageLoadStrategy: eager, platformName: mac, proxy: Proxy(), se:cdp: ws://localhost:52650/devtoo..., se:cdpVersion: 143.0.7499.169, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: b09458d1aa81e1a4c8b5084b913fc124
 at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
 at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:228)
-at followupspagetesting.Followup1on1.create1on1(Followup1on1.java:65)
+at basetest.BaseTest.Goto(BaseTest.java:122)
+at goalpagetesting.TestingOfGoalpage.usersCanSeeActiveGoals(TestingOfGoalpage.java:192)
 at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
@@ -62,12 +87,24 @@ at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
           </exception> <!-- org.openqa.selenium.TimeoutException -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- create1on1 -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:followupspagetesting.Followup1on1@2a5c8d3f]" started-at="2025-12-10T18:05:45 IST" name="tearDown" finished-at="2025-12-10T18:05:45 IST" duration-ms="275" status="PASS">
+        </test-method> <!-- usersCanSeeActiveGoals -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:goalpagetesting.TestingOfGoalpage@31190526]" started-at="2026-01-03T15:17:50 IST" name="tearDown" finished-at="2026-01-03T15:17:50 IST" duration-ms="114" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-      </class> <!-- followupspagetesting.Followup1on1 -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:goalpagetesting.TestingOfGoalpage@31190526]" started-at="2026-01-03T15:17:50 IST" name="setUp" finished-at="2026-01-03T15:17:55 IST" duration-ms="4485" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="usersCanSeeSupervisedGoals()[pri:5, instance:goalpagetesting.TestingOfGoalpage@31190526]" started-at="2026-01-03T15:17:55 IST" name="usersCanSeeSupervisedGoals" finished-at="2026-01-03T15:18:26 IST" duration-ms="31954" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- usersCanSeeSupervisedGoals -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:goalpagetesting.TestingOfGoalpage@31190526]" started-at="2026-01-03T15:18:26 IST" name="tearDown" finished-at="2026-01-03T15:18:27 IST" duration-ms="114" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- goalpagetesting.TestingOfGoalpage -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
