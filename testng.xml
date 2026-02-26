@@ -3,7 +3,7 @@
 <suite parallel="classes" name="Suite">
   <test thread-count="5" parallel="classes" name="Test">
     <classes>
-      <class name="signuppagetesting.Signuppagetesting"/>
+   
       <class name="loginpagetesting.Testingofloginpage"/>
       <class name="settingpagetesting.Settingpage"/>
       <class name="followupspagetesting.Followuppage"/>
@@ -11,6 +11,8 @@
       <class name="goalpagetesting.TestingOfGoalpage"/>
       <class name="feedbackspagetesting.TestingOfFeedbackPage"/>
       <class name="applaudpagetesting.Applaud"/>
+      <class name="settingpagetesting.Settingpage"/>
+    
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

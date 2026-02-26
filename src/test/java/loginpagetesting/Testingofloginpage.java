@@ -108,19 +108,19 @@ public class Testingofloginpage extends BaseTest {
 		}
 	}
 
+
 	public void passwordresetlink() throws InterruptedException {
-		Goto();
-		loginApplication();
+		login();
 
 
-		driver.findElement(By.xpath("//div[text()='Forgot password ?']")).click();
+		driver.findElement(By.xpath("(//div[normalize-space()='Forgot password ?'])[2]")).click();
 		driver.findElement(By.cssSelector("input[data-testid='forgot-email-input']"))
 				.sendKeys("yeshsharma516032@gmail.com");
 		Thread.sleep(1500);
 		driver.findElement(By.cssSelector("button[data-testid='forgot-sent-btn']")).click();
 		
 		WebElement dialog = driver.findElement(By.xpath(
-				"//div[@class='ant-notification-notice ant-notification-notice-success css-3mqfnx ant-notification-notice-closable']"));
+				"//div[@class='ant-notification-notice-message']"));
 		if (dialog.isDisplayed()) {
 			String dialogText = dialog.getText();
 			System.out.println("Popup message: " + dialogText);

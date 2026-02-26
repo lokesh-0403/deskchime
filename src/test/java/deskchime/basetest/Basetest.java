@@ -27,6 +27,6 @@ public class Basetest {
 			 WebDriver driver=new EdgeDriver();
 
 
-	}
+		}
 	}
 }

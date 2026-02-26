@@ -11,22 +11,22 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
+import basetest.BaseTest;
 import loginpagetesting.ChromeOptionsConfig;
 
 @Test
-public class Signuppagetesting {
-  private WebDriver driver;
-    private WebDriverWait wait;
+public class Signuppagetesting extends BaseTest {
+ 
+    
 
     // Initialize driver and wait
-    private void initDriver() {
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-        driver.get("https://deskchime.com/");
-    }
+  private Signuppagetesting() {
+		super();
+	}
 
     // Helper method for JS click
     private void clickJS(WebElement element) {
@@ -34,9 +34,14 @@ public class Signuppagetesting {
     }
 
     // --- Successful Registration ---
-//    @Test
+    @BeforeMethod
+	public void goTo() {
+    	Goto();
+    }
+    
+   @Test
     public void successfulregistration() {
-        initDriver();
+    
 
         // Wait for homepage load
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(text(),'Log in')]")));
@@ -61,7 +66,7 @@ public class Signuppagetesting {
         driver.findElement(By.id("register-form_first_name")).sendKeys("Test User");
         driver.findElement(By.id("register-form_company_name")).sendKeys("Treasor");
         driver.findElement(By.id("register-form_company_slug")).sendKeys("kratos");
-        driver.findElement(By.id("register-form_email")).sendKeys("testuser2@citmo.net");
+        driver.findElement(By.id("register-form_email")).sendKeys("testuser3@citmo.net");
         driver.findElement(By.id("register-form_password")).sendKeys("Mmpl@2025");
         driver.findElement(By.id("register-form_confirm_password")).sendKeys("Mmpl@2025");
 
@@ -87,9 +92,9 @@ public class Signuppagetesting {
     }
 
     // --- Empty Fields Validation ---\
-//    @Test
+   @Test
     public void emptyfields() {
-        initDriver();
+      
 
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(text(),'Log in')]")));
 
@@ -132,9 +137,9 @@ public class Signuppagetesting {
     }
 
     // --- Invalid Email Format ---
-//    @Test
+   @Test
     public void invalidemailformat() {
-        initDriver();
+       
 
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(text(),'Log in')]")));
 
@@ -179,9 +184,9 @@ public class Signuppagetesting {
     }
 
     // --- Existing Email Address --- 
-//    @Test
+    @Test
     public void existingemailaddress() {
-        initDriver();
+     
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(text(),'Log in')]")));
 
         // Click Log in
@@ -221,9 +226,9 @@ public class Signuppagetesting {
     }
 
     // --- Password Strength Validation ---
-//    @Test
+   @Test
     public void passwordstrength() {
-        initDriver();
+     
 
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(text(),'Log in')]")));
 
@@ -263,9 +268,9 @@ public class Signuppagetesting {
     }
 
     // --- Password Confirmation ---
-//    @Test
+   @Test
     public void passwordconfirmation() {
-        initDriver();
+    
 
         wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(text(),'Log in')]")));
 

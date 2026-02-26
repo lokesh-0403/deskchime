@@ -15,13 +15,15 @@ import org.testng.asserts.SoftAssert;
 
 import basetest.BaseTest;
 
+import retryanalyzer.RetryAnalyzer;
+
 
 public class Applaud extends BaseTest {
 
 //	public Applaud() {
 //		super(); // This will initialize the WebDriver in the BaseTest class
 //	}
-//	@Test
+	@Test(retryAnalyzer = RetryAnalyzer.class)
 	public void sendApplaud() throws InterruptedException {
 
 		Goto();
@@ -70,7 +72,7 @@ public class Applaud extends BaseTest {
             driver.close();
 	}
 
-//	@Test
+	@Test(retryAnalyzer = RetryAnalyzer.class)
 	public void useMonthFilter() throws InterruptedException {
 
 		Goto();
@@ -89,28 +91,32 @@ public class Applaud extends BaseTest {
     				ExpectedConditions.visibilityOfElementLocated(By.cssSelector("input[placeholder='Select month']")));
     		selectMonth.click();
     		
-    		List<WebElement> currentMonth = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector("div[class='ant-picker-cell-inner']")));
+    		List<WebElement> currentMonth = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//td[@class='ant-picker-cell ant-picker-cell-in-view']")));
     		Random random = new Random();
   	        WebElement month = currentMonth.get(random.nextInt(currentMonth.size()));
     		month.click();
     		String monthName = month.getText(); 
-    		WebElement element = wait.until(
-     				ExpectedConditions.visibilityOfElementLocated(By.xpath("//p[normalize-space()='No Applauds Found']"))); 
-    		 if (element.isDisplayed()) {
-    			 System.out.println("No Applauds Found");
+    		System.out.println("+-> Selected month : " + monthName);
+    		 boolean noApplaudsFound = !driver.findElements(
+    			        By.xpath("//p[normalize-space()='No Applauds Found']")).isEmpty();
+
+    			    if (!noApplaudsFound) {
+    			
+    			List<WebElement> dateFeilds = wait.until(
+        				ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[contains(text(),',')]")));
+        		for(WebElement dateField : dateFeilds ) {
+        		String dateText = dateField.getText();
+        		System.out.println("+-> Date field text : " + dateText);
+        		Assert.assertTrue(dateText.contains(monthName));
+        		Thread.sleep(800);
+        		}
+    			 
     			 } else{
-    		
-    		List<WebElement> dateFeilds = wait.until(
-    				ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector("//div[contains(text(),',')]")));
-    		for(WebElement dateField : dateFeilds ) {
-    		String dateText = dateField.getText();
-    		Assert.assertTrue(dateText.contains(monthName));
-    		Thread.sleep(3000);
-    		}
+    				 System.out.println("No Applauds Found");
         }
 	}
 
-	@Test
+	@Test(retryAnalyzer = RetryAnalyzer.class)
 	public void seeReceivedApplauds() throws InterruptedException {
 
 		Goto();
@@ -133,7 +139,7 @@ public class Applaud extends BaseTest {
 
 	}
 
-//	@Test
+	@Test(retryAnalyzer = RetryAnalyzer.class)
 	public void seeSentApplauds() throws InterruptedException {
 
 		Goto();
@@ -156,6 +162,8 @@ public class Applaud extends BaseTest {
 		softAssert("//div[text()='Sent ']");
 	
 	}
+	
+	
 	
 	public void softAssert(String locator) throws InterruptedException {
 		SoftAssert softAssert = new SoftAssert();

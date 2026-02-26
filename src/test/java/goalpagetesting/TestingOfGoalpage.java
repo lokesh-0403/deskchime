@@ -12,6 +12,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.*;
 import org.testng.annotations.Test;
+import retryanalyzer.RetryAnalyzer;
 
 import basetest.BaseTest;
 
@@ -83,16 +84,16 @@ public class TestingOfGoalpage extends BaseTest {
 		element.sendKeys(text);
 	}
 
-	private void clickSwitchButtonOfElement(By locator, By innerLocator) throws InterruptedException {
-		
-		WebElement element = waitForClickable(locator);
-		js.executeScript("arguments[0].scrollIntoView({behavior: 'smooth', block: 'center'});", element);
+	private void clickSwitchButtonOfElement(String locator, String innerLocator) throws InterruptedException {
+		WebElement switchButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(locator+"/ancestor::div[contains(@class,'justify-between')] //button[@role='switch']"+innerLocator)));
+//		WebElement element = waitForClickable(locator);
+		js.executeScript("arguments[0].scrollIntoView({behavior: 'smooth', block: 'center'});", switchButton);
 		Thread.sleep(500);
-		WebElement switchButton = element.findElement(innerLocator);
+//		WebElement switchButton = element.findElement(innerLocator);
 		switchButton.click();
 	}
 
-	@Test(priority = 1)
+	@Test(priority = 1,retryAnalyzer = RetryAnalyzer.class)
 	public void userCanCreateGoalForselfDevelopment() throws InterruptedException {
 		Goto();
 		loginApplication();
@@ -123,7 +124,7 @@ public class TestingOfGoalpage extends BaseTest {
 		System.out.println("✓ Self-development goal created successfully!");
 	}
 
-//	@Test(priority = 2)
+	@Test(priority = 2,retryAnalyzer = RetryAnalyzer.class)
 	public void userCanCreateGoalForTeam() throws InterruptedException {
 		Goto();
 		loginApplication();
@@ -156,8 +157,8 @@ public class TestingOfGoalpage extends BaseTest {
 		
 		// Add observer
 		clickSwitchButtonOfElement(
-			By.xpath("(//div[normalize-space()='Add Goal Observers'])[1]"),
-			By.cssSelector(".ant-switch-handle"));
+			"//div[normalize-space()='Add Goal Observers']",
+			"//div[@class='ant-switch-handle']");
 		
 		type(By.xpath("(//input[@type='text'])[3]"), "");
 		Thread.sleep(1000);
@@ -172,7 +173,7 @@ public class TestingOfGoalpage extends BaseTest {
 		System.out.println("✓ Team goal created successfully!");
 	}
 
-	@Test(priority = 3)
+	@Test(priority = 3,retryAnalyzer = RetryAnalyzer.class)
 	public void usersCanSeeCompletedGoals() throws InterruptedException {
 		Goto();
 		loginApplication();
@@ -187,7 +188,7 @@ public class TestingOfGoalpage extends BaseTest {
 		System.out.println("✓ Completed goals tab displayed successfully");
 	}
 
-	@Test(priority = 4)
+	@Test(priority = 4,retryAnalyzer = RetryAnalyzer.class)
 	public void usersCanSeeActiveGoals() throws InterruptedException {
 		Goto();
 		loginApplication();
@@ -202,7 +203,7 @@ public class TestingOfGoalpage extends BaseTest {
 		System.out.println("✓ Active goals tab displayed successfully");
 	}
 
-	@Test(priority = 5)
+	@Test(priority = 5,retryAnalyzer = RetryAnalyzer.class)
 	public void usersCanSeeSupervisedGoals() throws InterruptedException {
 		Goto();
 		loginApplication();
@@ -217,7 +218,7 @@ public class TestingOfGoalpage extends BaseTest {
 		System.out.println("✓ Supervising goals tab displayed successfully");
 	}
 
-//	@Test(priority = 6)
+	@Test(priority = 6,retryAnalyzer = RetryAnalyzer.class)
 	public void usersCanSeeArchivedGoals() throws InterruptedException {
 		Goto();
 		loginApplication();
@@ -232,7 +233,7 @@ public class TestingOfGoalpage extends BaseTest {
 		System.out.println("✓ Archived goals tab displayed successfully");
 	}
 	
-	//@Test(priority = 7)
+	@Test(priority = 7,retryAnalyzer = RetryAnalyzer.class)
 	public void usersCanSeeAllGoals() throws InterruptedException {
 		Goto();
 		loginApplication();
@@ -247,7 +248,7 @@ public class TestingOfGoalpage extends BaseTest {
 		System.out.println("✓ All goals tab displayed successfully");
 	}
 
-//	@Test(priority = 8)
+	@Test(priority = 8,retryAnalyzer = RetryAnalyzer.class)
 	public void usersCanUpdateStatus() throws InterruptedException {
 		Goto();
 		loginApplication();
@@ -301,7 +302,7 @@ public class TestingOfGoalpage extends BaseTest {
 		return time;
 	}
 	
-//	@Test(priority = 9)
+	@Test(priority = 9,retryAnalyzer = RetryAnalyzer.class)
 	public void userCanSetUpFollowupForGoal() throws InterruptedException, IOException {
 		Goto();
 		loginApplication();
@@ -334,18 +335,20 @@ public class TestingOfGoalpage extends BaseTest {
 		
 		// Add observer
 		clickSwitchButtonOfElement(
-			By.xpath("(//div[normalize-space()='Add Goal Observers'])[1]"),
-			By.cssSelector(".ant-switch-handle"));
+			"//div[normalize-space()='Add Goal Observers']",
+			"//div[@class='ant-switch-handle']");
 		
 		type(By.xpath("(//input[@type='text'])[3]"), "");
 		Thread.sleep(1000);
 		clickJS(By.xpath("(//div[@class='flex gap-2 items-center select-none'])[2]"));
 		clickJS(By.xpath("(//button[@id='member-save'])[2]"));
 		
+		
+		
 		// Schedule Follow-Up
 		clickSwitchButtonOfElement(
-			By.xpath("(//div[normalize-space()='Schedule Follow-Up for Goal'])[1]"),
-			By.cssSelector(".ant-switch-handle"));
+			"//div[normalize-space()='Schedule Follow-Up for Goal']",
+			"//div[@class='ant-switch-handle']");
 		
 		// Select frequency - Weekly
 		type(By.xpath("(//input[@type='search'])[3]"), "Weekly");
@@ -372,6 +375,102 @@ public class TestingOfGoalpage extends BaseTest {
 		Thread.sleep(1000);
 		clickJS(By.cssSelector("div[title='30 min'] div[class='ant-select-item-option-content']"));
 		
+		// Submit goal
+		clickJS(By.xpath("//button[@type='submit']"));
+		
+		// Wait for confirmation
+		waitForVisible(By.xpath("//div[contains(@class,'ant-notification-notice-success')]"));
+		System.out.println("✓ Goal with follow-up created successfully!");
+	}
+	
+
+	@Test(priority = 10,retryAnalyzer = RetryAnalyzer.class)
+	public void userCanSetUpFeedbackForGoal() throws InterruptedException, IOException {
+		Goto();
+		loginApplication();
+		closePopups();
+		
+		// Navigate to Goals
+		clickJS(By.xpath("//span[@class='ant-menu-title-content'][normalize-space()='Goals']"));
+		
+		// Click Create Goal
+		clickJS(By.xpath("//div[normalize-space()='New goal']"));
+		
+		// Choose Team goal
+		clickJS(By.xpath("//div[@class='py-4 px-6 space-y-4']/div[2]"));
+		
+		// Select team member
+		type(By.xpath("(//input[@type='text'])[1]"), "lokesh");
+		Thread.sleep(1000);
+		clickJS(By.cssSelector("div[class='flex gap-2 items-center select-none']"));
+		clickJS(By.id("member-save"));
+		
+		// Fill in goal details
+		type(By.cssSelector("input[placeholder='Eg: Increase my overall productivity']"),
+			"Goal with Follow-up - " + System.currentTimeMillis());
+		
+		type(By.xpath("//div[contains(@class,'tiptap ProseMirror ')]"),
+			"When setting goals for yourself, you may choose to follow the SMART goal method...");
+		
+	
+		// Set Goal Timeline to Weekly
+		clickJS(By.xpath("//p[normalize-space()='Monthly']"));
+		
+		// Add observer
+		clickSwitchButtonOfElement(
+			"//div[normalize-space()='Add Goal Observers']",
+				"//div[@class='ant-switch-handle']");
+		
+		type(By.xpath("(//input[@type='text'])[3]"), "");
+		Thread.sleep(1000);
+		clickJS(By.xpath("(//div[@class='flex gap-2 items-center select-none'])[2]"));
+		clickJS(By.xpath("(//button[@id='member-save'])[2]"));
+		
+		
+		
+		// Schedule Follow-Up
+		clickSwitchButtonOfElement(
+			"//div[normalize-space()='Automated Feedback']",
+			"//div[@class='ant-switch-handle']");
+		
+		Thread.sleep(5000);
+		// Select frequency - Weekly
+		
+		WebElement autoSetFreElement = null;
+		try {
+		autoSetFreElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='font-medium text-sm text-blue-700']")));
+		}catch(Exception e) {}
+		
+		if(autoSetFreElement!=null && autoSetFreElement.getText().contains("Feedback frequency is automatically set to")) {
+			System.out.println("Feedback frequency auto-set message displayed: " + autoSetFreElement.getText());
+			type(By.xpath("(//input[@type='search'])[3]"), "Test");
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("(//div[contains(@class,'ant-select-item-option-content') and normalize-space()='TEST'])[1]"))).click();
+			Thread.sleep(500);
+			
+		}
+		else {
+				type(By.xpath("(//input[@type='search'])[3]"), "Weekly");
+				Thread.sleep(500);
+				
+				clickJS(By.cssSelector("div[title='Weekly'] div[class='ant-select-item-option-content']"));
+				
+				// Select time - 
+				Thread.sleep(1000);
+				wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("(//input[@type='search'])[4]"))).click();
+				Thread.sleep(500);
+				wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("(//div[normalize-space()='Monday'])[1]"))).click();
+
+				
+		
+		Thread.sleep(500);
+		
+		// Select duration - 30 min
+		Thread.sleep(1000);
+		type(By.xpath("(//input[@type='search'])[5]"), "Test");
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("(//div[normalize-space()='TEST'])[1]"))).click();
+		Thread.sleep(500);
+		
+		}
 		// Submit goal
 		clickJS(By.xpath("//button[@type='submit']"));
 		

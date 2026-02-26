@@ -1,61 +1,350 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="4" passed="3" failed="1" skipped="0">
+<testng-results retried="3" ignored="0" total="39" passed="36" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2026-01-03T15:15:41 IST" name="Default suite" finished-at="2026-01-03T15:18:27 IST" duration-ms="166001">
+  <suite started-at="2026-02-26T17:48:30 IST" name="Suite" finished-at="2026-02-26T17:56:23 IST" duration-ms="473391">
     <groups>
     </groups>
-    <test started-at="2026-01-03T15:15:41 IST" name="Default test" finished-at="2026-01-03T15:18:27 IST" duration-ms="166001">
-      <class name="goalpagetesting.TestingOfGoalpage">
-        <test-method is-config="true" signature="setUp()[pri:0, instance:goalpagetesting.TestingOfGoalpage@31190526]" started-at="2026-01-03T15:15:41 IST" name="setUp" finished-at="2026-01-03T15:15:47 IST" duration-ms="6143" status="PASS">
+    <test started-at="2026-02-26T17:48:30 IST" name="Test" finished-at="2026-02-26T17:56:23 IST" duration-ms="473391">
+      <class name="settingpagetesting.Settingpage">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:settingpagetesting.Settingpage@26b3fd41]" started-at="2026-02-26T17:49:37 IST" name="setUp" finished-at="2026-02-26T17:49:39 IST" duration-ms="2608" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="userCanCreateGoalForselfDevelopment()[pri:1, instance:goalpagetesting.TestingOfGoalpage@31190526]" started-at="2026-01-03T15:15:47 IST" name="userCanCreateGoalForselfDevelopment" finished-at="2026-01-03T15:16:23 IST" duration-ms="36130" status="PASS">
+        <test-method signature="testingOfSettingPage()[pri:0, instance:settingpagetesting.Settingpage@26b3fd41]" started-at="2026-02-26T17:49:39 IST" name="testingOfSettingPage" finished-at="2026-02-26T17:49:48 IST" duration-ms="8380" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- userCanCreateGoalForselfDevelopment -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:goalpagetesting.TestingOfGoalpage@31190526]" started-at="2026-01-03T15:16:23 IST" name="tearDown" finished-at="2026-01-03T15:16:23 IST" duration-ms="151" status="PASS">
+        </test-method> <!-- testingOfSettingPage -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:settingpagetesting.Settingpage@26b3fd41]" started-at="2026-02-26T17:49:48 IST" name="tearDown" finished-at="2026-02-26T17:49:48 IST" duration-ms="105" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setUp()[pri:0, instance:goalpagetesting.TestingOfGoalpage@31190526]" started-at="2026-01-03T15:16:23 IST" name="setUp" finished-at="2026-01-03T15:16:27 IST" duration-ms="3462" status="PASS">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:settingpagetesting.Settingpage@26b3fd41]" started-at="2026-02-26T17:49:48 IST" name="setUp" finished-at="2026-02-26T17:49:51 IST" duration-ms="3086" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="usersCanSeeCompletedGoals()[pri:3, instance:goalpagetesting.TestingOfGoalpage@31190526]" started-at="2026-01-03T15:16:27 IST" name="usersCanSeeCompletedGoals" finished-at="2026-01-03T15:17:04 IST" duration-ms="37287" status="PASS">
+        <test-method signature="userCreatedAndDeletedSuccessfully1()[pri:0, instance:settingpagetesting.Settingpage@26b3fd41]" started-at="2026-02-26T17:49:51 IST" name="userCreatedAndDeletedSuccessfully1" finished-at="2026-02-26T17:50:10 IST" duration-ms="19239" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- usersCanSeeCompletedGoals -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:goalpagetesting.TestingOfGoalpage@31190526]" started-at="2026-01-03T15:17:04 IST" name="tearDown" finished-at="2026-01-03T15:17:04 IST" duration-ms="115" status="PASS">
+        </test-method> <!-- userCreatedAndDeletedSuccessfully1 -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:settingpagetesting.Settingpage@26b3fd41]" started-at="2026-02-26T17:50:10 IST" name="tearDown" finished-at="2026-02-26T17:50:10 IST" duration-ms="229" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setUp()[pri:0, instance:goalpagetesting.TestingOfGoalpage@31190526]" started-at="2026-01-03T15:17:04 IST" name="setUp" finished-at="2026-01-03T15:17:09 IST" duration-ms="5171" status="PASS">
+      </class> <!-- settingpagetesting.Settingpage -->
+      <class name="feedbackspagetesting.TestingOfFeedbackPage">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:feedbackspagetesting.TestingOfFeedbackPage@fd07cbb]" started-at="2026-02-26T17:48:30 IST" name="setUp" finished-at="2026-02-26T17:48:36 IST" duration-ms="5883" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="usersCanSeeActiveGoals()[pri:4, instance:goalpagetesting.TestingOfGoalpage@31190526]" started-at="2026-01-03T15:17:09 IST" name="usersCanSeeActiveGoals" finished-at="2026-01-03T15:17:50 IST" duration-ms="40742" status="FAIL">
-          <exception class="org.openqa.selenium.TimeoutException">
+        <test-method is-config="true" signature="initWait()[pri:0, instance:feedbackspagetesting.TestingOfFeedbackPage@fd07cbb]" started-at="2026-02-26T17:48:36 IST" name="initWait" finished-at="2026-02-26T17:48:36 IST" duration-ms="22" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initWait -->
+        <test-method signature="saveAndEditTemplate()[pri:0, instance:feedbackspagetesting.TestingOfFeedbackPage@fd07cbb]" started-at="2026-02-26T17:48:36 IST" name="saveAndEditTemplate" finished-at="2026-02-26T17:49:17 IST" duration-ms="41847" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- saveAndEditTemplate -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:feedbackspagetesting.TestingOfFeedbackPage@fd07cbb]" started-at="2026-02-26T17:49:17 IST" name="tearDown" finished-at="2026-02-26T17:49:18 IST" duration-ms="125" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:feedbackspagetesting.TestingOfFeedbackPage@fd07cbb]" started-at="2026-02-26T17:49:18 IST" name="setUp" finished-at="2026-02-26T17:49:20 IST" duration-ms="2403" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method is-config="true" signature="initWait()[pri:0, instance:feedbackspagetesting.TestingOfFeedbackPage@fd07cbb]" started-at="2026-02-26T17:49:20 IST" name="initWait" finished-at="2026-02-26T17:49:20 IST" duration-ms="7" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initWait -->
+        <test-method signature="templateCreation()[pri:0, instance:feedbackspagetesting.TestingOfFeedbackPage@fd07cbb]" started-at="2026-02-26T17:49:20 IST" name="templateCreation" finished-at="2026-02-26T17:50:07 IST" duration-ms="46669" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- templateCreation -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:feedbackspagetesting.TestingOfFeedbackPage@fd07cbb]" started-at="2026-02-26T17:50:07 IST" name="tearDown" finished-at="2026-02-26T17:50:08 IST" duration-ms="257" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:feedbackspagetesting.TestingOfFeedbackPage@fd07cbb]" started-at="2026-02-26T17:50:08 IST" name="setUp" finished-at="2026-02-26T17:50:24 IST" duration-ms="16346" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method is-config="true" signature="initWait()[pri:0, instance:feedbackspagetesting.TestingOfFeedbackPage@fd07cbb]" started-at="2026-02-26T17:50:24 IST" name="initWait" finished-at="2026-02-26T17:50:24 IST" duration-ms="29" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initWait -->
+        <test-method signature="userCanAskForFeedbackByExternalLink()[pri:0, instance:feedbackspagetesting.TestingOfFeedbackPage@fd07cbb]" started-at="2026-02-26T17:50:24 IST" name="userCanAskForFeedbackByExternalLink" finished-at="2026-02-26T17:52:00 IST" duration-ms="96249" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- userCanAskForFeedbackByExternalLink -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:feedbackspagetesting.TestingOfFeedbackPage@fd07cbb]" started-at="2026-02-26T17:52:00 IST" name="tearDown" finished-at="2026-02-26T17:52:00 IST" duration-ms="117" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:feedbackspagetesting.TestingOfFeedbackPage@fd07cbb]" started-at="2026-02-26T17:52:00 IST" name="setUp" finished-at="2026-02-26T17:52:04 IST" duration-ms="3335" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method is-config="true" signature="initWait()[pri:0, instance:feedbackspagetesting.TestingOfFeedbackPage@fd07cbb]" started-at="2026-02-26T17:52:04 IST" name="initWait" finished-at="2026-02-26T17:52:04 IST" duration-ms="2" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initWait -->
+        <test-method signature="userCanAskForFeedbackFromSpecificTeamMember()[pri:0, instance:feedbackspagetesting.TestingOfFeedbackPage@fd07cbb]" started-at="2026-02-26T17:52:04 IST" name="userCanAskForFeedbackFromSpecificTeamMember" finished-at="2026-02-26T17:52:55 IST" duration-ms="51685" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- userCanAskForFeedbackFromSpecificTeamMember -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:feedbackspagetesting.TestingOfFeedbackPage@fd07cbb]" started-at="2026-02-26T17:52:55 IST" name="tearDown" finished-at="2026-02-26T17:52:55 IST" duration-ms="156" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:feedbackspagetesting.TestingOfFeedbackPage@fd07cbb]" started-at="2026-02-26T17:52:55 IST" name="setUp" finished-at="2026-02-26T17:52:58 IST" duration-ms="2486" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method is-config="true" signature="initWait()[pri:0, instance:feedbackspagetesting.TestingOfFeedbackPage@fd07cbb]" started-at="2026-02-26T17:52:58 IST" name="initWait" finished-at="2026-02-26T17:52:58 IST" duration-ms="2" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initWait -->
+        <test-method signature="userCanMakeUseOfPreMadeFeedbackTemplate()[pri:0, instance:feedbackspagetesting.TestingOfFeedbackPage@fd07cbb]" started-at="2026-02-26T17:52:58 IST" name="userCanMakeUseOfPreMadeFeedbackTemplate" finished-at="2026-02-26T17:53:46 IST" duration-ms="47594" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- userCanMakeUseOfPreMadeFeedbackTemplate -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:feedbackspagetesting.TestingOfFeedbackPage@fd07cbb]" started-at="2026-02-26T17:53:46 IST" name="tearDown" finished-at="2026-02-26T17:53:46 IST" duration-ms="117" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:feedbackspagetesting.TestingOfFeedbackPage@fd07cbb]" started-at="2026-02-26T17:53:46 IST" name="setUp" finished-at="2026-02-26T17:53:48 IST" duration-ms="2577" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method is-config="true" signature="initWait()[pri:0, instance:feedbackspagetesting.TestingOfFeedbackPage@fd07cbb]" started-at="2026-02-26T17:53:48 IST" name="initWait" finished-at="2026-02-26T17:53:48 IST" duration-ms="3" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initWait -->
+        <test-method signature="userCanShortAndFilterFeedbackByAnswered()[pri:0, instance:feedbackspagetesting.TestingOfFeedbackPage@fd07cbb]" started-at="2026-02-26T17:53:48 IST" name="userCanShortAndFilterFeedbackByAnswered" finished-at="2026-02-26T17:54:14 IST" duration-ms="25808" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- userCanShortAndFilterFeedbackByAnswered -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:feedbackspagetesting.TestingOfFeedbackPage@fd07cbb]" started-at="2026-02-26T17:54:14 IST" name="tearDown" finished-at="2026-02-26T17:54:14 IST" duration-ms="98" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:feedbackspagetesting.TestingOfFeedbackPage@fd07cbb]" started-at="2026-02-26T17:54:14 IST" name="setUp" finished-at="2026-02-26T17:54:19 IST" duration-ms="4351" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method is-config="true" signature="initWait()[pri:0, instance:feedbackspagetesting.TestingOfFeedbackPage@fd07cbb]" started-at="2026-02-26T17:54:19 IST" name="initWait" finished-at="2026-02-26T17:54:19 IST" duration-ms="5" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initWait -->
+        <test-method signature="userCanShortAndFilterFeedbackByPending()[pri:0, instance:feedbackspagetesting.TestingOfFeedbackPage@fd07cbb]" started-at="2026-02-26T17:54:19 IST" name="userCanShortAndFilterFeedbackByPending" finished-at="2026-02-26T17:54:44 IST" duration-ms="25597" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- userCanShortAndFilterFeedbackByPending -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:feedbackspagetesting.TestingOfFeedbackPage@fd07cbb]" started-at="2026-02-26T17:54:44 IST" name="tearDown" finished-at="2026-02-26T17:54:45 IST" duration-ms="319" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:feedbackspagetesting.TestingOfFeedbackPage@fd07cbb]" started-at="2026-02-26T17:54:45 IST" name="setUp" finished-at="2026-02-26T17:54:50 IST" duration-ms="5520" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method is-config="true" signature="initWait()[pri:0, instance:feedbackspagetesting.TestingOfFeedbackPage@fd07cbb]" started-at="2026-02-26T17:54:50 IST" name="initWait" finished-at="2026-02-26T17:54:50 IST" duration-ms="2" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initWait -->
+        <test-method signature="usersCanSeeAllTheFeedbackTheyHaveReceived()[pri:0, instance:feedbackspagetesting.TestingOfFeedbackPage@fd07cbb]" started-at="2026-02-26T17:54:50 IST" name="usersCanSeeAllTheFeedbackTheyHaveReceived" finished-at="2026-02-26T17:55:14 IST" duration-ms="23753" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- usersCanSeeAllTheFeedbackTheyHaveReceived -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:feedbackspagetesting.TestingOfFeedbackPage@fd07cbb]" started-at="2026-02-26T17:55:14 IST" name="tearDown" finished-at="2026-02-26T17:55:14 IST" duration-ms="112" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- feedbackspagetesting.TestingOfFeedbackPage -->
+      <class name="loginpagetesting.Testingofloginpage">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:loginpagetesting.Testingofloginpage@3d285d7e]" started-at="2026-02-26T17:48:30 IST" name="setUp" finished-at="2026-02-26T17:48:36 IST" duration-ms="5883" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method is-config="true" signature="initWait()[pri:0, instance:loginpagetesting.Testingofloginpage@3d285d7e]" started-at="2026-02-26T17:48:36 IST" name="initWait" finished-at="2026-02-26T17:48:36 IST" duration-ms="22" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initWait -->
+        <test-method signature="emptypasswordfield()[pri:0, instance:loginpagetesting.Testingofloginpage@3d285d7e]" started-at="2026-02-26T17:48:36 IST" name="emptypasswordfield" finished-at="2026-02-26T17:48:41 IST" duration-ms="5300" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- emptypasswordfield -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:loginpagetesting.Testingofloginpage@3d285d7e]" started-at="2026-02-26T17:48:41 IST" name="tearDown" finished-at="2026-02-26T17:48:41 IST" duration-ms="156" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:loginpagetesting.Testingofloginpage@3d285d7e]" started-at="2026-02-26T17:48:41 IST" name="setUp" finished-at="2026-02-26T17:48:46 IST" duration-ms="4894" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method is-config="true" signature="initWait()[pri:0, instance:loginpagetesting.Testingofloginpage@3d285d7e]" started-at="2026-02-26T17:48:46 IST" name="initWait" finished-at="2026-02-26T17:48:46 IST" duration-ms="4" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initWait -->
+        <test-method signature="emptyusernamefield()[pri:0, instance:loginpagetesting.Testingofloginpage@3d285d7e]" started-at="2026-02-26T17:48:46 IST" name="emptyusernamefield" finished-at="2026-02-26T17:48:49 IST" duration-ms="3004" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- emptyusernamefield -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:loginpagetesting.Testingofloginpage@3d285d7e]" started-at="2026-02-26T17:48:49 IST" name="tearDown" finished-at="2026-02-26T17:48:49 IST" duration-ms="122" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:loginpagetesting.Testingofloginpage@3d285d7e]" started-at="2026-02-26T17:48:49 IST" name="setUp" finished-at="2026-02-26T17:48:52 IST" duration-ms="2849" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method is-config="true" signature="initWait()[pri:0, instance:loginpagetesting.Testingofloginpage@3d285d7e]" started-at="2026-02-26T17:48:52 IST" name="initWait" finished-at="2026-02-26T17:48:52 IST" duration-ms="2" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initWait -->
+        <test-method signature="invalidcredentials1()[pri:0, instance:loginpagetesting.Testingofloginpage@3d285d7e]" started-at="2026-02-26T17:48:52 IST" name="invalidcredentials1" finished-at="2026-02-26T17:48:55 IST" duration-ms="3201" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- invalidcredentials1 -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:loginpagetesting.Testingofloginpage@3d285d7e]" started-at="2026-02-26T17:48:55 IST" name="tearDown" finished-at="2026-02-26T17:48:55 IST" duration-ms="183" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:loginpagetesting.Testingofloginpage@3d285d7e]" started-at="2026-02-26T17:48:55 IST" name="setUp" finished-at="2026-02-26T17:48:59 IST" duration-ms="3432" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method is-config="true" signature="initWait()[pri:0, instance:loginpagetesting.Testingofloginpage@3d285d7e]" started-at="2026-02-26T17:48:59 IST" name="initWait" finished-at="2026-02-26T17:48:59 IST" duration-ms="58" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initWait -->
+        <test-method signature="invalidcredentials2()[pri:0, instance:loginpagetesting.Testingofloginpage@3d285d7e]" started-at="2026-02-26T17:48:59 IST" name="invalidcredentials2" finished-at="2026-02-26T17:49:02 IST" duration-ms="2968" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- invalidcredentials2 -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:loginpagetesting.Testingofloginpage@3d285d7e]" started-at="2026-02-26T17:49:02 IST" name="tearDown" finished-at="2026-02-26T17:49:02 IST" duration-ms="94" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:loginpagetesting.Testingofloginpage@3d285d7e]" started-at="2026-02-26T17:49:02 IST" name="setUp" finished-at="2026-02-26T17:49:05 IST" duration-ms="2999" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method is-config="true" signature="initWait()[pri:0, instance:loginpagetesting.Testingofloginpage@3d285d7e]" started-at="2026-02-26T17:49:05 IST" name="initWait" finished-at="2026-02-26T17:49:05 IST" duration-ms="5" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initWait -->
+        <test-method signature="login()[pri:0, instance:loginpagetesting.Testingofloginpage@3d285d7e]" started-at="2026-02-26T17:49:05 IST" name="login" finished-at="2026-02-26T17:49:07 IST" duration-ms="1765" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- login -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:loginpagetesting.Testingofloginpage@3d285d7e]" started-at="2026-02-26T17:49:07 IST" name="tearDown" finished-at="2026-02-26T17:49:07 IST" duration-ms="103" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:loginpagetesting.Testingofloginpage@3d285d7e]" started-at="2026-02-26T17:49:07 IST" name="setUp" finished-at="2026-02-26T17:49:10 IST" duration-ms="2757" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method is-config="true" signature="initWait()[pri:0, instance:loginpagetesting.Testingofloginpage@3d285d7e]" started-at="2026-02-26T17:49:10 IST" name="initWait" finished-at="2026-02-26T17:49:10 IST" duration-ms="2" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initWait -->
+        <test-method signature="passwordresetlink()[pri:0, instance:loginpagetesting.Testingofloginpage@3d285d7e]" started-at="2026-02-26T17:49:10 IST" name="passwordresetlink" finished-at="2026-02-26T17:49:14 IST" duration-ms="4302" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- passwordresetlink -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:loginpagetesting.Testingofloginpage@3d285d7e]" started-at="2026-02-26T17:49:14 IST" name="tearDown" finished-at="2026-02-26T17:49:14 IST" duration-ms="119" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:loginpagetesting.Testingofloginpage@3d285d7e]" started-at="2026-02-26T17:49:14 IST" name="setUp" finished-at="2026-02-26T17:49:17 IST" duration-ms="2574" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method is-config="true" signature="initWait()[pri:0, instance:loginpagetesting.Testingofloginpage@3d285d7e]" started-at="2026-02-26T17:49:17 IST" name="initWait" finished-at="2026-02-26T17:49:17 IST" duration-ms="1" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initWait -->
+        <test-method signature="userlogout()[pri:0, instance:loginpagetesting.Testingofloginpage@3d285d7e]" started-at="2026-02-26T17:49:17 IST" name="userlogout" finished-at="2026-02-26T17:49:28 IST" duration-ms="11446" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- userlogout -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:loginpagetesting.Testingofloginpage@3d285d7e]" started-at="2026-02-26T17:49:28 IST" name="tearDown" finished-at="2026-02-26T17:49:28 IST" duration-ms="113" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:loginpagetesting.Testingofloginpage@3d285d7e]" started-at="2026-02-26T17:49:28 IST" name="setUp" finished-at="2026-02-26T17:49:31 IST" duration-ms="2645" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method is-config="true" signature="initWait()[pri:0, instance:loginpagetesting.Testingofloginpage@3d285d7e]" started-at="2026-02-26T17:49:31 IST" name="initWait" finished-at="2026-02-26T17:49:31 IST" duration-ms="2" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initWait -->
+        <test-method signature="validcredendetials()[pri:0, instance:loginpagetesting.Testingofloginpage@3d285d7e]" started-at="2026-02-26T17:49:31 IST" name="validcredendetials" finished-at="2026-02-26T17:49:36 IST" duration-ms="5576" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- validcredendetials -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:loginpagetesting.Testingofloginpage@3d285d7e]" started-at="2026-02-26T17:49:36 IST" name="tearDown" finished-at="2026-02-26T17:49:37 IST" duration-ms="108" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- loginpagetesting.Testingofloginpage -->
+      <class name="applaudpagetesting.Applaud">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:applaudpagetesting.Applaud@3571b748]" started-at="2026-02-26T17:48:30 IST" name="setUp" finished-at="2026-02-26T17:48:36 IST" duration-ms="5884" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="seeReceivedApplauds()[pri:0, instance:applaudpagetesting.Applaud@3571b748]" started-at="2026-02-26T17:48:36 IST" name="seeReceivedApplauds" finished-at="2026-02-26T17:49:01 IST" duration-ms="25405" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- seeReceivedApplauds -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:applaudpagetesting.Applaud@3571b748]" started-at="2026-02-26T17:49:01 IST" name="tearDown" finished-at="2026-02-26T17:49:01 IST" duration-ms="116" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:applaudpagetesting.Applaud@3571b748]" started-at="2026-02-26T17:49:01 IST" name="setUp" finished-at="2026-02-26T17:49:04 IST" duration-ms="2543" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="seeSentApplauds()[pri:0, instance:applaudpagetesting.Applaud@3571b748]" started-at="2026-02-26T17:49:04 IST" name="seeSentApplauds" finished-at="2026-02-26T17:49:37 IST" duration-ms="33417" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- seeSentApplauds -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:applaudpagetesting.Applaud@3571b748]" started-at="2026-02-26T17:49:37 IST" name="tearDown" finished-at="2026-02-26T17:49:37 IST" duration-ms="95" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:applaudpagetesting.Applaud@3571b748]" started-at="2026-02-26T17:49:37 IST" name="setUp" finished-at="2026-02-26T17:49:40 IST" duration-ms="2570" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="sendApplaud()[pri:0, instance:applaudpagetesting.Applaud@3571b748]" started-at="2026-02-26T17:49:40 IST" name="sendApplaud" finished-at="2026-02-26T17:50:03 IST" duration-ms="22824" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- sendApplaud -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:applaudpagetesting.Applaud@3571b748]" started-at="2026-02-26T17:50:03 IST" name="tearDown" finished-at="2026-02-26T17:50:03 IST" duration-ms="53" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:applaudpagetesting.Applaud@3571b748]" started-at="2026-02-26T17:50:03 IST" name="setUp" finished-at="2026-02-26T17:50:17 IST" duration-ms="14556" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method retried="true" signature="useMonthFilter()[pri:0, instance:applaudpagetesting.Applaud@3571b748]" started-at="2026-02-26T17:50:17 IST" name="useMonthFilter" finished-at="2026-02-26T17:51:03 IST" duration-ms="45575" status="SKIP">
+          <exception class="java.lang.AssertionError">
             <message>
-              <![CDATA[Expected condition failed: waiting for basetest.BaseTest$$Lambda/0x000000012924d480@680d4a6a (tried for 40 second(s) with 500 milliseconds interval)
-Build info: version: '4.33.0', revision: '2c6aaad03a'
-System info: os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '26.2', java.version: '21.0.9'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: true, browserName: chrome, browserVersion: 143.0.7499.169, chrome: {chromedriverVersion: 143.0.7499.169 (164b20aab62..., userDataDir: /var/folders/tp/6wqkcb7x735...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:52650}, goog:processID: 8391, networkConnectionEnabled: false, pageLoadStrategy: eager, platformName: mac, proxy: Proxy(), se:cdp: ws://localhost:52650/devtoo..., se:cdpVersion: 143.0.7499.169, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: b09458d1aa81e1a4c8b5084b913fc124]]>
+              <![CDATA[expected [true] but found [false]]]>
             </message>
             <full-stacktrace>
-              <![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for basetest.BaseTest$$Lambda/0x000000012924d480@680d4a6a (tried for 40 second(s) with 500 milliseconds interval)
-Build info: version: '4.33.0', revision: '2c6aaad03a'
-System info: os.name: 'Mac OS X', os.arch: 'x86_64', os.version: '26.2', java.version: '21.0.9'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: true, browserName: chrome, browserVersion: 143.0.7499.169, chrome: {chromedriverVersion: 143.0.7499.169 (164b20aab62..., userDataDir: /var/folders/tp/6wqkcb7x735...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:52650}, goog:processID: 8391, networkConnectionEnabled: false, pageLoadStrategy: eager, platformName: mac, proxy: Proxy(), se:cdp: ws://localhost:52650/devtoo..., se:cdpVersion: 143.0.7499.169, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: b09458d1aa81e1a4c8b5084b913fc124
-at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
-at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:228)
-at basetest.BaseTest.Goto(BaseTest.java:122)
-at goalpagetesting.TestingOfGoalpage.usersCanSeeActiveGoals(TestingOfGoalpage.java:192)
+              <![CDATA[java.lang.AssertionError: expected [true] but found [false]
+at org.testng.Assert.fail(Assert.java:111)
+at org.testng.Assert.failNotEquals(Assert.java:1590)
+at org.testng.Assert.assertTrue(Assert.java:57)
+at org.testng.Assert.assertTrue(Assert.java:67)
+at applaudpagetesting.Applaud.useMonthFilter(Applaud.java:110)
 at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
@@ -66,45 +355,293 @@ at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInv
 at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
 at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
 at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
-at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-at org.testng.TestRunner.privateRun(TestRunner.java:741)
-at org.testng.TestRunner.run(TestRunner.java:616)
-at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
-at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
-at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
-at org.testng.SuiteRunner.run(SuiteRunner.java:312)
-at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
-at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
-at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
-at org.testng.TestNG.runSuites(TestNG.java:1112)
-at org.testng.TestNG.run(TestNG.java:1079)
-at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
-at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
+at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
+at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+at org.testng.internal.thread.graph.TestNGFutureTask.run(TestNGFutureTask.java:22)
+at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+at java.base/java.lang.Thread.run(Thread.java:1583)
 ]]>
             </full-stacktrace>
-          </exception> <!-- org.openqa.selenium.TimeoutException -->
+          </exception> <!-- java.lang.AssertionError -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- usersCanSeeActiveGoals -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:goalpagetesting.TestingOfGoalpage@31190526]" started-at="2026-01-03T15:17:50 IST" name="tearDown" finished-at="2026-01-03T15:17:50 IST" duration-ms="114" status="PASS">
+        </test-method> <!-- useMonthFilter -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:applaudpagetesting.Applaud@3571b748]" started-at="2026-02-26T17:51:03 IST" name="tearDown" finished-at="2026-02-26T17:51:03 IST" duration-ms="158" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-        <test-method is-config="true" signature="setUp()[pri:0, instance:goalpagetesting.TestingOfGoalpage@31190526]" started-at="2026-01-03T15:17:50 IST" name="setUp" finished-at="2026-01-03T15:17:55 IST" duration-ms="4485" status="PASS">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:applaudpagetesting.Applaud@3571b748]" started-at="2026-02-26T17:51:03 IST" name="setUp" finished-at="2026-02-26T17:51:06 IST" duration-ms="3395" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="usersCanSeeSupervisedGoals()[pri:5, instance:goalpagetesting.TestingOfGoalpage@31190526]" started-at="2026-01-03T15:17:55 IST" name="usersCanSeeSupervisedGoals" finished-at="2026-01-03T15:18:26 IST" duration-ms="31954" status="PASS">
+        <test-method retried="true" signature="useMonthFilter()[pri:0, instance:applaudpagetesting.Applaud@3571b748]" started-at="2026-02-26T17:51:06 IST" name="useMonthFilter" finished-at="2026-02-26T17:51:41 IST" duration-ms="34251" status="SKIP">
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[expected [true] but found [false]]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: expected [true] but found [false]
+at org.testng.Assert.fail(Assert.java:111)
+at org.testng.Assert.failNotEquals(Assert.java:1590)
+at org.testng.Assert.assertTrue(Assert.java:57)
+at org.testng.Assert.assertTrue(Assert.java:67)
+at applaudpagetesting.Applaud.useMonthFilter(Applaud.java:110)
+at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:687)
+at org.testng.internal.invokers.TestInvoker.retryFailed(TestInvoker.java:269)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:76)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:995)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
+at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+at org.testng.internal.thread.graph.TestNGFutureTask.run(TestNGFutureTask.java:22)
+at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+at java.base/java.lang.Thread.run(Thread.java:1583)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- useMonthFilter -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:applaudpagetesting.Applaud@3571b748]" started-at="2026-02-26T17:51:41 IST" name="tearDown" finished-at="2026-02-26T17:51:41 IST" duration-ms="246" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:applaudpagetesting.Applaud@3571b748]" started-at="2026-02-26T17:51:41 IST" name="setUp" finished-at="2026-02-26T17:51:45 IST" duration-ms="3892" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method retried="true" signature="useMonthFilter()[pri:0, instance:applaudpagetesting.Applaud@3571b748]" started-at="2026-02-26T17:51:45 IST" name="useMonthFilter" finished-at="2026-02-26T17:52:20 IST" duration-ms="34943" status="SKIP">
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[expected [true] but found [false]]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: expected [true] but found [false]
+at org.testng.Assert.fail(Assert.java:111)
+at org.testng.Assert.failNotEquals(Assert.java:1590)
+at org.testng.Assert.assertTrue(Assert.java:57)
+at org.testng.Assert.assertTrue(Assert.java:67)
+at applaudpagetesting.Applaud.useMonthFilter(Applaud.java:110)
+at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:687)
+at org.testng.internal.invokers.TestInvoker.retryFailed(TestInvoker.java:269)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:76)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:995)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
+at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+at org.testng.internal.thread.graph.TestNGFutureTask.run(TestNGFutureTask.java:22)
+at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+at java.base/java.lang.Thread.run(Thread.java:1583)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- useMonthFilter -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:applaudpagetesting.Applaud@3571b748]" started-at="2026-02-26T17:52:20 IST" name="tearDown" finished-at="2026-02-26T17:52:20 IST" duration-ms="109" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:applaudpagetesting.Applaud@3571b748]" started-at="2026-02-26T17:52:20 IST" name="setUp" finished-at="2026-02-26T17:52:22 IST" duration-ms="2425" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="useMonthFilter()[pri:0, instance:applaudpagetesting.Applaud@3571b748]" started-at="2026-02-26T17:52:22 IST" name="useMonthFilter" finished-at="2026-02-26T17:53:08 IST" duration-ms="45366" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- useMonthFilter -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:applaudpagetesting.Applaud@3571b748]" started-at="2026-02-26T17:53:08 IST" name="tearDown" finished-at="2026-02-26T17:53:08 IST" duration-ms="118" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- applaudpagetesting.Applaud -->
+      <class name="followupspagetesting.Followuppage">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:followupspagetesting.Followuppage@7494f96a]" started-at="2026-02-26T17:48:30 IST" name="setUp" finished-at="2026-02-26T17:48:36 IST" duration-ms="5879" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="followupCreatedAndDeleted1()[pri:0, instance:followupspagetesting.Followuppage@7494f96a]" started-at="2026-02-26T17:48:36 IST" name="followupCreatedAndDeleted1" finished-at="2026-02-26T17:50:05 IST" duration-ms="89759" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- followupCreatedAndDeleted1 -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:followupspagetesting.Followuppage@7494f96a]" started-at="2026-02-26T17:50:05 IST" name="tearDown" finished-at="2026-02-26T17:50:06 IST" duration-ms="344" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:followupspagetesting.Followuppage@7494f96a]" started-at="2026-02-26T17:50:06 IST" name="setUp" finished-at="2026-02-26T17:50:17 IST" duration-ms="11405" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="meetingWithoutSpecifyDateAndTime()[pri:0, instance:followupspagetesting.Followuppage@7494f96a]" started-at="2026-02-26T17:50:17 IST" name="meetingWithoutSpecifyDateAndTime" finished-at="2026-02-26T17:51:54 IST" duration-ms="96814" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- meetingWithoutSpecifyDateAndTime -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:followupspagetesting.Followuppage@7494f96a]" started-at="2026-02-26T17:51:54 IST" name="tearDown" finished-at="2026-02-26T17:51:54 IST" duration-ms="233" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- followupspagetesting.Followuppage -->
+      <class name="followupspagetesting.Followup1on1">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:followupspagetesting.Followup1on1@561b6512]" started-at="2026-02-26T17:48:30 IST" name="setUp" finished-at="2026-02-26T17:48:36 IST" duration-ms="5882" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="create1on1()[pri:0, instance:followupspagetesting.Followup1on1@561b6512]" started-at="2026-02-26T17:48:36 IST" name="create1on1" finished-at="2026-02-26T17:50:07 IST" duration-ms="91889" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- create1on1 -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:followupspagetesting.Followup1on1@561b6512]" started-at="2026-02-26T17:50:07 IST" name="tearDown" finished-at="2026-02-26T17:50:08 IST" duration-ms="184" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:followupspagetesting.Followup1on1@561b6512]" started-at="2026-02-26T17:50:08 IST" name="setUp" finished-at="2026-02-26T17:50:24 IST" duration-ms="16180" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="create1on1WithoutSpecifyDateandtime()[pri:0, instance:followupspagetesting.Followup1on1@561b6512]" started-at="2026-02-26T17:50:24 IST" name="create1on1WithoutSpecifyDateandtime" finished-at="2026-02-26T17:51:56 IST" duration-ms="92199" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- create1on1WithoutSpecifyDateandtime -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:followupspagetesting.Followup1on1@561b6512]" started-at="2026-02-26T17:51:56 IST" name="tearDown" finished-at="2026-02-26T17:51:56 IST" duration-ms="126" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- followupspagetesting.Followup1on1 -->
+      <class name="goalpagetesting.TestingOfGoalpage">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:goalpagetesting.TestingOfGoalpage@2e377400]" started-at="2026-02-26T17:50:10 IST" name="setUp" finished-at="2026-02-26T17:50:22 IST" duration-ms="11462" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="userCanCreateGoalForselfDevelopment()[pri:1, instance:goalpagetesting.TestingOfGoalpage@2e377400]" started-at="2026-02-26T17:50:22 IST" name="userCanCreateGoalForselfDevelopment" finished-at="2026-02-26T17:51:01 IST" duration-ms="39356" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- userCanCreateGoalForselfDevelopment -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:goalpagetesting.TestingOfGoalpage@2e377400]" started-at="2026-02-26T17:51:01 IST" name="tearDown" finished-at="2026-02-26T17:51:02 IST" duration-ms="421" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:goalpagetesting.TestingOfGoalpage@2e377400]" started-at="2026-02-26T17:51:02 IST" name="setUp" finished-at="2026-02-26T17:51:06 IST" duration-ms="4664" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="userCanCreateGoalForTeam()[pri:2, instance:goalpagetesting.TestingOfGoalpage@2e377400]" started-at="2026-02-26T17:51:06 IST" name="userCanCreateGoalForTeam" finished-at="2026-02-26T17:51:42 IST" duration-ms="35477" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- userCanCreateGoalForTeam -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:goalpagetesting.TestingOfGoalpage@2e377400]" started-at="2026-02-26T17:51:42 IST" name="tearDown" finished-at="2026-02-26T17:51:42 IST" duration-ms="103" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:goalpagetesting.TestingOfGoalpage@2e377400]" started-at="2026-02-26T17:51:42 IST" name="setUp" finished-at="2026-02-26T17:51:45 IST" duration-ms="2817" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="usersCanSeeCompletedGoals()[pri:3, instance:goalpagetesting.TestingOfGoalpage@2e377400]" started-at="2026-02-26T17:51:45 IST" name="usersCanSeeCompletedGoals" finished-at="2026-02-26T17:52:06 IST" duration-ms="21278" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- usersCanSeeCompletedGoals -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:goalpagetesting.TestingOfGoalpage@2e377400]" started-at="2026-02-26T17:52:06 IST" name="tearDown" finished-at="2026-02-26T17:52:06 IST" duration-ms="103" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:goalpagetesting.TestingOfGoalpage@2e377400]" started-at="2026-02-26T17:52:06 IST" name="setUp" finished-at="2026-02-26T17:52:09 IST" duration-ms="2601" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="usersCanSeeActiveGoals()[pri:4, instance:goalpagetesting.TestingOfGoalpage@2e377400]" started-at="2026-02-26T17:52:09 IST" name="usersCanSeeActiveGoals" finished-at="2026-02-26T17:52:29 IST" duration-ms="19886" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- usersCanSeeActiveGoals -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:goalpagetesting.TestingOfGoalpage@2e377400]" started-at="2026-02-26T17:52:29 IST" name="tearDown" finished-at="2026-02-26T17:52:29 IST" duration-ms="101" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:goalpagetesting.TestingOfGoalpage@2e377400]" started-at="2026-02-26T17:52:29 IST" name="setUp" finished-at="2026-02-26T17:52:31 IST" duration-ms="2391" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="usersCanSeeSupervisedGoals()[pri:5, instance:goalpagetesting.TestingOfGoalpage@2e377400]" started-at="2026-02-26T17:52:31 IST" name="usersCanSeeSupervisedGoals" finished-at="2026-02-26T17:52:51 IST" duration-ms="19743" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- usersCanSeeSupervisedGoals -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:goalpagetesting.TestingOfGoalpage@31190526]" started-at="2026-01-03T15:18:26 IST" name="tearDown" finished-at="2026-01-03T15:18:27 IST" duration-ms="114" status="PASS">
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:goalpagetesting.TestingOfGoalpage@2e377400]" started-at="2026-02-26T17:52:51 IST" name="tearDown" finished-at="2026-02-26T17:52:51 IST" duration-ms="105" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:goalpagetesting.TestingOfGoalpage@2e377400]" started-at="2026-02-26T17:52:51 IST" name="setUp" finished-at="2026-02-26T17:52:54 IST" duration-ms="3306" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="usersCanSeeArchivedGoals()[pri:6, instance:goalpagetesting.TestingOfGoalpage@2e377400]" started-at="2026-02-26T17:52:54 IST" name="usersCanSeeArchivedGoals" finished-at="2026-02-26T17:53:15 IST" duration-ms="20921" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- usersCanSeeArchivedGoals -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:goalpagetesting.TestingOfGoalpage@2e377400]" started-at="2026-02-26T17:53:15 IST" name="tearDown" finished-at="2026-02-26T17:53:15 IST" duration-ms="96" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:goalpagetesting.TestingOfGoalpage@2e377400]" started-at="2026-02-26T17:53:15 IST" name="setUp" finished-at="2026-02-26T17:53:19 IST" duration-ms="3386" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="usersCanSeeAllGoals()[pri:7, instance:goalpagetesting.TestingOfGoalpage@2e377400]" started-at="2026-02-26T17:53:19 IST" name="usersCanSeeAllGoals" finished-at="2026-02-26T17:53:39 IST" duration-ms="20321" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- usersCanSeeAllGoals -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:goalpagetesting.TestingOfGoalpage@2e377400]" started-at="2026-02-26T17:53:39 IST" name="tearDown" finished-at="2026-02-26T17:53:39 IST" duration-ms="106" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:goalpagetesting.TestingOfGoalpage@2e377400]" started-at="2026-02-26T17:53:39 IST" name="setUp" finished-at="2026-02-26T17:53:42 IST" duration-ms="2414" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="usersCanUpdateStatus()[pri:8, instance:goalpagetesting.TestingOfGoalpage@2e377400]" started-at="2026-02-26T17:53:42 IST" name="usersCanUpdateStatus" finished-at="2026-02-26T17:54:11 IST" duration-ms="29224" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- usersCanUpdateStatus -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:goalpagetesting.TestingOfGoalpage@2e377400]" started-at="2026-02-26T17:54:11 IST" name="tearDown" finished-at="2026-02-26T17:54:11 IST" duration-ms="113" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:goalpagetesting.TestingOfGoalpage@2e377400]" started-at="2026-02-26T17:54:11 IST" name="setUp" finished-at="2026-02-26T17:54:16 IST" duration-ms="5124" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="userCanSetUpFollowupForGoal()[pri:9, instance:goalpagetesting.TestingOfGoalpage@2e377400]" started-at="2026-02-26T17:54:16 IST" name="userCanSetUpFollowupForGoal" finished-at="2026-02-26T17:55:02 IST" duration-ms="45358" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- userCanSetUpFollowupForGoal -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:goalpagetesting.TestingOfGoalpage@2e377400]" started-at="2026-02-26T17:55:02 IST" name="tearDown" finished-at="2026-02-26T17:55:02 IST" duration-ms="264" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setUp()[pri:0, instance:goalpagetesting.TestingOfGoalpage@2e377400]" started-at="2026-02-26T17:55:02 IST" name="setUp" finished-at="2026-02-26T17:55:06 IST" duration-ms="4310" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="userCanSetUpFeedbackForGoal()[pri:10, instance:goalpagetesting.TestingOfGoalpage@2e377400]" started-at="2026-02-26T17:55:06 IST" name="userCanSetUpFeedbackForGoal" finished-at="2026-02-26T17:56:23 IST" duration-ms="76776" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- userCanSetUpFeedbackForGoal -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:goalpagetesting.TestingOfGoalpage@2e377400]" started-at="2026-02-26T17:56:23 IST" name="tearDown" finished-at="2026-02-26T17:56:23 IST" duration-ms="151" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
       </class> <!-- goalpagetesting.TestingOfGoalpage -->
-    </test> <!-- Default test -->
-  </suite> <!-- Default suite -->
+    </test> <!-- Test -->
+  </suite> <!-- Suite -->
 </testng-results>

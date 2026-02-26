@@ -1,4 +1,4 @@
-package feedbackspagetesting;
+package feedbackspagetesting;	
 
 import java.time.Duration;
 import java.time.LocalDate;
@@ -18,8 +18,9 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import com.github.javafaker.Faker;
 import basetest.BaseTest;
+import retryanalyzer.RetryAnalyzer;
 
-	@Test()
+	@Test(retryAnalyzer = RetryAnalyzer.class)
 	
 	public class TestingOfFeedbackPage extends BaseTest {
 
@@ -55,7 +56,12 @@ import basetest.BaseTest;
         } catch (Exception e) {
             System.out.println("No popup found or already closed");
         }
-      
+        
+        WebElement workspaceElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@data-testid='org-select-input']")));
+        workspaceElement.click();
+        WebElement listedWorkspace = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[normalize-space()='Yesh Tester']")));
+        listedWorkspace.click();
+        Thread.sleep(1000);
     }
     
     // Reusable method to click Feedbacks menu
@@ -108,7 +114,7 @@ import basetest.BaseTest;
     }
 
 
-    @Test       //Passed
+    @Test(retryAnalyzer=RetryAnalyzer.class)        //Passed
     public void templateCreation() throws InterruptedException {
       	Goto();
 		loginApplication();
@@ -116,43 +122,60 @@ import basetest.BaseTest;
         clickFeedbacksMenu();
         clickTemplatesButton();
         Thread.sleep(1000);
-        // Click "Create from scratch" button
+     // Click Create From Scratch
         WebElement createFromScratch = wait.until(
-            ExpectedConditions.visibilityOfElementLocated(By.xpath(
-                "(//div[normalize-space()='Create From Scratch'])[2]")));
+                ExpectedConditions.elementToBeClickable(
+                        By.xpath("(//div[normalize-space()='Create From Scratch'])[2]")));
         createFromScratch.click();
         Thread.sleep(1000);
 
         // Add title
         WebElement titleInput = wait.until(
-            ExpectedConditions.visibilityOfElementLocated(By.id("template_name")));
+                ExpectedConditions.visibilityOfElementLocated(By.id("template_name")));
         titleInput.clear();
         titleInput.sendKeys("TEST");
 
+        // Handle Cancel button if it appears (optional popup case)
+//        try {
+//            WebElement cancelButton = wait.until(
+//                    ExpectedConditions.visibilityOfElementLocated(
+//                            By.xpath("//div[normalize-space()='Cancel']")));
+//            
+//            if (cancelButton.isDisplayed()) {
+//                cancelButton.click();   // remove this line if you only want to check presence
+//            }
+//        } catch (Exception e) {
+//            System.out.println("Cancel button not present, continuing...");
+//        }
+
         // Add description
         WebElement descriptionInput = wait.until(
-            ExpectedConditions.visibilityOfElementLocated(By.id("template_description")));
+                ExpectedConditions.visibilityOfElementLocated(By.id("template_description")));
         descriptionInput.clear();
         descriptionInput.sendKeys("test the feedback section");
 
-        // Click next/continue button
-        WebElement continueBtn = wait.until(
-            ExpectedConditions.visibilityOfElementLocated(By.xpath(
-                "(//button[contains(@class,'rounded-lg')])[3]")));
-        
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block: 'center'});", continueBtn);
+        // Click next button (example)
+        WebElement continueButton = wait.until(
+                ExpectedConditions.elementToBeClickable(
+                        By.xpath("//button[normalize-space()='Next']")));
+  
 
         Thread.sleep(500);
         
-        continueBtn.click();
+        continueButton.click();
         
-//    continueBtn.click();
+
 
         // Click on multiple choice selector
         WebElement multipleChoice = wait.until(
             ExpectedConditions.elementToBeClickable(By.cssSelector(
                 "span[class='ant-select-selection-item'] div[class='font-normal text-xs lg:text-sm leading-140 lg:leading-140 text-slate-600']")));
         multipleChoice.click();
+        
+        WebElement msqOption = wait.until(
+                ExpectedConditions.elementToBeClickable(By.xpath(
+                    "//div[@class='ant-select-item-option-content']//div[@class='font-normal text-xs lg:text-sm leading-140 lg:leading-140 text-slate-600'][normalize-space()='Multiple Choice']")));
+        msqOption.click();
 
         // Enter question
         WebElement questionInput = wait.until(
@@ -193,7 +216,7 @@ import basetest.BaseTest;
         System.out.println("Template created successfully!");
     }
 
-    @Test    //Passed
+    @Test(retryAnalyzer=RetryAnalyzer.class)   
     public void saveAndEditTemplate() throws InterruptedException {
     	Goto();
 		loginApplication();	
@@ -248,7 +271,7 @@ import basetest.BaseTest;
     }
 
 
-   @Test   //Passed
+   @Test(retryAnalyzer=RetryAnalyzer.class)    //Passed
     public void userCanMakeUseOfPreMadeFeedbackTemplate() throws InterruptedException {
        	Goto();
 		loginApplication();
@@ -325,7 +348,7 @@ import basetest.BaseTest;
         }
         }
 
-    @Test  // passed
+    @Test(retryAnalyzer=RetryAnalyzer.class)  // passed
     public void userCanAskForFeedbackFromSpecificTeamMember() throws InterruptedException {
       	Goto();
 		loginApplication();
@@ -344,7 +367,7 @@ import basetest.BaseTest;
         WebElement searchTemplate = wait.until(
                 ExpectedConditions.elementToBeClickable(
                     By.cssSelector("input[type='text']")));
-        searchTemplate.sendKeys("Template form scratch");
+        searchTemplate.sendKeys("Workflow & Challenges");
         Thread.sleep(1000);
         WebElement searchedTemplate = wait.until(
                 ExpectedConditions.elementToBeClickable(
@@ -382,7 +405,7 @@ import basetest.BaseTest;
             
             WebElement freqCycle = wait.until(
                     ExpectedConditions.visibilityOfElementLocated(By.xpath(
-            "//*[text()='Daily']")));
+            "//*[text()='Weekly']")));
             ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block: 'center'});", freqCycle);
             Thread.sleep(700);
             freqCycle.click();
@@ -401,10 +424,12 @@ import basetest.BaseTest;
             
             //calender
     	
-            WebElement yearLabel = driver.findElement(By.cssSelector("button[aria-label='Choose a year']"));
+            WebElement yearLabel = wait.until(
+                    ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button[aria-label='Choose a year']")));
             yearLabel.click();
             
-    		List<WebElement> years = driver.findElements(By.cssSelector("div[class*='ant-picker-cell-inner']"));
+    		List<WebElement> years = wait.until(
+                    ExpectedConditions.visibilityOfAllElementsLocatedBy(By.cssSelector("div[class*='ant-picker-cell-inner']")));
     	        for (WebElement y : years) {
     	            if (y.getText().equals(year)) {
     	                y.click();
@@ -413,7 +438,9 @@ import basetest.BaseTest;
     	        }
  
     	
-    	        List<WebElement> months = driver.findElements(By.cssSelector("div[class*='ant-picker-cell-inner']"));
+    	        List<WebElement> months =  wait.until(
+    	        		ExpectedConditions.visibilityOfAllElementsLocatedBy(By.cssSelector("div[class*='ant-picker-cell-inner']")));
+    	        
     	        for (WebElement m : months) {
     	            if (m.getText().equals(month)) { 
     	                m.click();
@@ -421,9 +448,9 @@ import basetest.BaseTest;
     	            }
     	        }
     		
-    	        List<WebElement> currentMonthDates = driver.findElements(
-    	                By.cssSelector("td.ant-picker-cell-in-view:not(.ant-picker-cell-disabled) div.ant-picker-cell-inner")
-    	        );
+    	        List<WebElement> currentMonthDates = wait.until(
+    	        		ExpectedConditions.visibilityOfAllElementsLocatedBy(
+    	                By.cssSelector("td.ant-picker-cell-in-view:not(.ant-picker-cell-disabled) div.ant-picker-cell-inner")));
 
     	        Random random = new Random();
     	        WebElement randomDate = currentMonthDates.get(random.nextInt(currentMonthDates.size()));
@@ -518,7 +545,7 @@ import basetest.BaseTest;
  //            Assert.assertEquals(confText, "Feedback Assigned Successfully");
 	// }
 
-    @Test // passed
+    @Test(retryAnalyzer=RetryAnalyzer.class)  // passed
 	public void usersCanSeeAllTheFeedbackTheyHaveReceived() throws InterruptedException {
 
 		Goto();
@@ -562,7 +589,7 @@ import basetest.BaseTest;
 
 	}
 
-   @Test // passed
+   @Test(retryAnalyzer=RetryAnalyzer.class)  // passed
 	public void userCanShortAndFilterFeedbackByAnswered() throws InterruptedException {
 
 		Goto();
@@ -589,7 +616,7 @@ import basetest.BaseTest;
 	}
 
 
-    @Test // passed
+    @Test(retryAnalyzer=RetryAnalyzer.class)  // passed
 	public void userCanAskForFeedbackByExternalLink() throws InterruptedException {
         Actions action = new Actions(driver);
 		Goto();

@@ -3,58 +3,13 @@
 <suite parallel="classes" name="Failed suite [Suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" parallel="classes" name="Test(failed)">
     <classes>
-      <class name="signuppagetesting.Signuppagetesting">
-        <methods>
-          <include name="successfulregistration"/>
-        </methods>
-      </class> <!-- signuppagetesting.Signuppagetesting -->
-      <class name="goalpagetesting.TestingOfGoalpage">
-        <methods>
-          <include name="tearDown"/>
-          <include name="initDriver"/>
-          <include name="userCanSetUpFollowupForGoal"/>
-          <include name="setUp"/>
-        </methods>
-      </class> <!-- goalpagetesting.TestingOfGoalpage -->
-      <class name="followupspagetesting.Followuppage">
-        <methods>
-          <include name="followupCreatedAndDeleted1"/>
-          <include name="tearDown"/>
-          <include name="setUp"/>
-        </methods>
-      </class> <!-- followupspagetesting.Followuppage -->
-      <class name="feedbackspagetesting.TestingOfFeedbackPage">
-        <methods>
-          <include name="initWait"/>
-          <include name="tearDown"/>
-          <include name="setUp"/>
-          <include name="templateCreation"/>
-        </methods>
-      </class> <!-- feedbackspagetesting.TestingOfFeedbackPage -->
-      <class name="settingpagetesting.Settingpage">
-        <methods>
-          <include name="tearDown"/>
-          <include name="testingOfSettingPage"/>
-          <include name="setUp"/>
-          <include name="userCreatedAndDeletedSuccessfully"/>
-        </methods>
-      </class> <!-- settingpagetesting.Settingpage -->
       <class name="followupspagetesting.Followup1on1">
         <methods>
           <include name="tearDown"/>
           <include name="setUp"/>
-          <include name="create1on1WithoutSpecifyDateandtime"/>
           <include name="create1on1"/>
         </methods>
       </class> <!-- followupspagetesting.Followup1on1 -->
-      <class name="loginpagetesting.Testingofloginpage">
-        <methods>
-          <include name="tearDown"/>
-          <include name="setUp"/>
-          <include name="passwordresetlink"/>
-          <include name="initWait"/>
-        </methods>
-      </class> <!-- loginpagetesting.Testingofloginpage -->
     </classes>
   </test> <!-- Test(failed) -->
 </suite> <!-- Failed suite [Suite] -->

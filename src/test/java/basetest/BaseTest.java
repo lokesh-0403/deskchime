@@ -106,6 +106,7 @@ public class BaseTest {
 		
 		// Wait for successful login
 		Thread.sleep(2000);
+		System.out.println("Login attempted with email: " + emails);
 	}
 
 	public void Goto() {

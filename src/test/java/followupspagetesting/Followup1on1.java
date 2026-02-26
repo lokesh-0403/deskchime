@@ -11,6 +11,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import retryanalyzer.RetryAnalyzer;
 
 import basetest.BaseTest;
 
@@ -19,12 +20,44 @@ public class Followup1on1 extends BaseTest {
 	public Followup1on1() {
 		super(); // This will initialize the WebDriver in the BaseTest class
 	}
-
-	@Test()
+	  private void closePopup() throws InterruptedException {
+	      
+    	  try {
+              WebElement skipPopup = wait.until(
+                  ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[normalize-space()='Skip']")));
+              skipPopup.click();
+          } catch (Exception e) {
+              System.out.println("No popup found or already closed");
+          }
+    	  Thread.sleep(1000);
+        try {
+            WebElement feedbackPopup = wait.until(
+                ExpectedConditions.elementToBeClickable(By.cssSelector("button[aria-label='Close']")));
+            feedbackPopup.click();
+        } catch (Exception e) {
+            System.out.println("No popup found or already closed");
+        }
+        Thread.sleep(1000);   
+        try {
+            WebElement skipPopup = wait.until(
+                ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[normalize-space()='Skip']")));
+            skipPopup.click();
+        } catch (Exception e) {
+            System.out.println("No popup found or already closed");
+        }
+        
+        WebElement workspaceElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@data-testid='org-select-input']")));
+        workspaceElement.click();
+        WebElement listedWorkspace = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[normalize-space()='Yesh Tester']")));
+        listedWorkspace.click();
+        Thread.sleep(1000);
+    }
+	@Test(retryAnalyzer = RetryAnalyzer.class)
 	public void create1on1() throws InterruptedException {
 
 		Goto();
 		loginApplication();
+		closePopup();
 
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
 
@@ -38,15 +71,16 @@ public class Followup1on1 extends BaseTest {
 		createFollowUp.click();
 
 		WebElement selectTeam = wait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='qa']")));
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='developer']")));
 
 		selectTeam.click();
 
 		WebElement selectMate = wait.until(ExpectedConditions
-				.visibilityOfElementLocated(By.xpath("(//div[@class='flex gap-2 items-center md:space-x-3'])[1]")));
+				.visibilityOfElementLocated(By.xpath("//div[contains(text(),'Lokesh Sharma')]")));
 
 		selectMate.click();
-
+		String mateName = selectMate.getText();
+		System.out.println(">> Mate Name : "+mateName);
 		WebElement selectDate = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@placeholder='Select date']")));
 
@@ -62,19 +96,22 @@ public class Followup1on1 extends BaseTest {
 		SelectTime.click();
 		
 		List<WebElement> timeList =  wait
-				.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//div[@class='ant-select-item-option-content']")));
-		
-		for(int i=0; i<timeList.size();i++) {
-		try {
-		WebElement nextTime = wait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//div[@class='ant-select-item-option-content'])["+i+"]")));
+				.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[@class='ant-select-item-option-content']")));
+		WebElement nextTime = timeList.get(1);	
+		System.out.println(">>>"+nextTime.getText());
 		nextTime.click();
-		}
-		catch(Exception e) {}
-	
-		break;
 		
-	}
+//		for(int i=0; i<timeList.size();i++) {
+//		try {
+//		WebElement nextTime = wait
+//				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//div[@class='ant-select-item-option-content'])["+i+"]")));
+//		nextTime.click();
+//		}
+//		catch(Exception e) {}
+//	
+//		break;	
+//	}
+		
 //		LocalTime currentTime = LocalTime.now();
 //		int hour = currentTime.getHour();
 //		int minute = currentTime.getMinute();
@@ -160,19 +197,22 @@ public class Followup1on1 extends BaseTest {
 		actions.moveToElement(nextButton).perform();
 		nextButton.click();
 
-//
+		Thread.sleep(1000);
+		WebElement continueButton = wait.until(ExpectedConditions
+				.elementToBeClickable(By.xpath("//button[contains(normalize-space(),'Continue')]")));
+		continueButton.click();
 
-		WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(
-				"button[class='rounded-lg w-fit tracking-[0.5px] font-medium flex items-center gap-2 justify-center transition-all duration-200 ease-in-out disabled:cursor-default bg-teal-500 text-white hover:bg-teal-400 active:bg-teal-300 disabled:bg-zinc-400 h-10 px-3 py-2 text-sm relative']")));
-		wait.until(ExpectedConditions.elementToBeClickable(element)).click();
+		WebElement continueButton2 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(
+				"(//button[contains(normalize-space(),'Continue')])[2]")));
+		continueButton2.click();
 
-		WebElement deleteOptionsButton = wait.until(ExpectedConditions
-				.visibilityOfElementLocated(By.xpath("//div[@data-testid='followupList']//div[2]//div[9]//button[2]")));
+		WebElement optionsButton = wait.until(ExpectedConditions
+				.visibilityOfElementLocated(By.xpath("//div[normalize-space()='"+mateName+"']/ancestor::a/ancestor::div[1]//button[@class='tracking-[0.5px] font-medium flex items-center gap-2 justify-center transition-all duration-200 ease-in-out disabled:cursor-default text-teal-700 border-2 hover:border-teal-700 hover:text-teal-700 active:bg-teal-500 active:text-white disabled:border-zinc-400 disabled:text-zinc-400 px-3 py-2 text-sm rounded-full leading-none ant-dropdown-trigger border-slate-300 w-9 h-9 md:w-9 md:h-9 relative']")));
 
-		deleteOptionsButton.click();
+		optionsButton.click();
 
 		WebElement delete = wait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//p[@class='py-[5px] px-3']")));
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//p[normalize-space()='Delete']")));
 
 		delete.click();
 
@@ -183,13 +223,15 @@ public class Followup1on1 extends BaseTest {
 
 	}
 
-	@Test
+	@Test(retryAnalyzer = RetryAnalyzer.class)
 	public void create1on1WithoutSpecifyDateandtime() throws InterruptedException {
 
 		Goto();
 		loginApplication();
+		closePopup();
 
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(25));
+
 		WebElement button1on1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("1-on-1s")));
 
 		button1on1.click();
@@ -199,24 +241,26 @@ public class Followup1on1 extends BaseTest {
 
 		createFollowUp.click();
 
-		WebElement FrontendTeam = wait
-				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='qa']")));
+		WebElement selectTeam = wait
+				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[normalize-space()='developer']")));
 
-		FrontendTeam.click();
+		selectTeam.click();
 
 		WebElement selectMate = wait.until(ExpectedConditions
-				.visibilityOfElementLocated(By.xpath("(//div[@class='flex gap-2 items-center md:space-x-3'])[1]")));
+				.visibilityOfElementLocated(By.xpath("//div[contains(text(),'Lokesh Sharma')]")));
 
 		selectMate.click();
-
+		String mateName = selectMate.getText();
+		System.out.println(">> Mate Name : "+mateName);
 		WebElement selectDate = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@placeholder='Select date']")));
 
 		selectDate.click();
 
-		WebElement TodayButton = wait
+		WebElement todayButton = wait
 				.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".ant-picker-now-btn")));
-		TodayButton.click();
+		todayButton.click();
+		Thread.sleep(1000);
 
 		WebElement nextButton = driver.findElement(By.cssSelector(
 				"button[class='rounded-lg w-fit tracking-[0.5px] font-medium flex items-center gap-2 justify-center transition-all duration-200 ease-in-out disabled:cursor-default bg-teal-500 text-white hover:bg-teal-400 active:bg-teal-300 disabled:bg-zinc-400 h-10 px-3 py-2 text-sm relative']"));
