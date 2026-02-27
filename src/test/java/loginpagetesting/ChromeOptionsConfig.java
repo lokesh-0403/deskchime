@@ -9,7 +9,7 @@ public class ChromeOptionsConfig {
         options.setBinary(
         	    "/Applications/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing"
         	);
-        options.addArguments("--headless");
+//        options.addArguments("--headless");
         options.addArguments("--disable-gpu");
         options.addArguments("--no-sandbox");
         options.addArguments("--disable-dev-shm-usage"); // Use this to prevent resource problems

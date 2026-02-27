@@ -3,13 +3,15 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="followupspagetesting.Followup1on1">
+      <class name="settingpagetesting.TeamTestingPage">
         <methods>
           <include name="tearDown"/>
+          <include name="deleteTeam"/>
           <include name="setUp"/>
-          <include name="create1on1"/>
+          <include name="removeuserFromTeam"/>
+          <include name="teamCreatedAndDeletedSuccessfully"/>
         </methods>
-      </class> <!-- followupspagetesting.Followup1on1 -->
+      </class> <!-- settingpagetesting.TeamTestingPage -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
