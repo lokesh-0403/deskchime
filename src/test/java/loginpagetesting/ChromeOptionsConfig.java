@@ -6,9 +6,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 public class ChromeOptionsConfig {
     public static ChromeOptions getChromeOptions() {
         ChromeOptions options = new ChromeOptions();
-        options.setBinary(
-        	    "/Applications/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing"
-        	);
+       
      options.addArguments("--headless");
         options.addArguments("--disable-gpu");
         options.addArguments("--no-sandbox");
